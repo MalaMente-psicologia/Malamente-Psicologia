@@ -7,806 +7,193 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --cream: #f5f0e8;
-    --beige: #e8dfd0;
-    --beige-dark: #d4c9b5;
-    --teal: #4a7c7e;
-    --teal-dark: #3a6163;
-    --teal-light: #6a9c9e;
-    --brown: #8b7355;
-    --text: #2c2420;
-    --text-light: #6b5d52;
-    --white: #fdfaf5;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    font-family: 'Jost', sans-serif;
-    background: var(--cream);
-    color: var(--text);
-    line-height: 1.7;
-  }
-
-  /* ─── NAV ─── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.2rem 4rem;
-    background: rgba(245,240,232,0.92);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--beige-dark);
-  }
-
-  .nav-logo {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
-    color: var(--text);
-    text-decoration: none;
-  }
-
-  .nav-logo span { color: var(--teal); }
-
-  nav ul {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-  }
-
-  nav a {
-    font-size: 0.78rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-light);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-
-  nav a:hover { color: var(--teal); }
-
-  /* ─── HERO ─── */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-top: 80px;
-  }
-
-  .hero-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 5rem 4rem 5rem 6rem;
-  }
-
-  .hero-tag {
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--teal);
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
-
-  .hero-tag::before {
-    content: '';
-    display: block;
-    width: 2rem;
-    height: 1px;
-    background: var(--teal);
-  }
-
-  .hero h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2.8rem, 4vw, 4.2rem);
-    font-weight: 300;
-    line-height: 1.15;
-    margin-bottom: 1.5rem;
-    color: var(--text);
-  }
-
-  .hero h1 em {
-    font-style: italic;
-    color: var(--teal);
-  }
-
-  .hero-sub {
-    font-size: 0.95rem;
-    color: var(--text-light);
-    max-width: 420px;
-    margin-bottom: 3rem;
-    font-weight: 300;
-    line-height: 1.8;
-  }
-
-  .btn-primary {
-    display: inline-block;
-    background: var(--teal);
-    color: var(--white);
-    padding: 1rem 2.5rem;
-    font-size: 0.78rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: background 0.3s, transform 0.2s;
-    cursor: pointer;
-    border: none;
-    font-family: 'Jost', sans-serif;
-  }
-
-  .btn-primary:hover {
-    background: var(--teal-dark);
-    transform: translateY(-1px);
-  }
-
-  .btn-outline {
-    display: inline-block;
-    border: 1px solid var(--teal);
-    color: var(--teal);
-    padding: 0.9rem 2.2rem;
-    font-size: 0.78rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.3s;
-    cursor: pointer;
-    background: transparent;
-    font-family: 'Jost', sans-serif;
-    margin-left: 1rem;
-  }
-
-  .btn-outline:hover {
-    background: var(--teal);
-    color: var(--white);
-  }
-
-  .hero-visual {
-    background: var(--beige);
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .hero-visual-inner {
-    text-align: center;
-    padding: 3rem;
-  }
-
-  .quote-rotating {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    font-weight: 300;
-    font-style: italic;
-    color: var(--text);
-    line-height: 1.6;
-    max-width: 360px;
-    margin: 0 auto 1.5rem;
-    min-height: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.6s ease;
-  }
-
-  .quote-author {
-    font-size: 0.75rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--teal);
-    transition: opacity 0.6s ease;
-  }
-
-  .quote-dots {
-    display: flex;
-    gap: 0.5rem;
-    justify-content: center;
-    margin-top: 2rem;
-  }
-
-  .quote-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--beige-dark);
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-
-  .quote-dot.active { background: var(--teal); }
-
-  .hero-deco {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    border: 1px solid var(--beige-dark);
-    top: -50px;
-    right: -50px;
-    opacity: 0.5;
-  }
-
-  .hero-deco-2 {
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    border: 1px solid var(--beige-dark);
-    bottom: 30px;
-    left: 30px;
-    opacity: 0.4;
-  }
-
-  /* ─── SECTION COMMON ─── */
-  section {
-    padding: 6rem 6rem;
-  }
-
-  .section-label {
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--teal);
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-  }
-
-  .section-label::before {
-    content: '';
-    display: block;
-    width: 2rem;
-    height: 1px;
-    background: var(--teal);
-  }
-
-  .section-title {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(2rem, 3vw, 3rem);
-    font-weight: 300;
-    line-height: 1.2;
-    margin-bottom: 1.5rem;
-  }
-
-  /* ─── CHI SONO ─── */
-  #chi-sono {
-    background: var(--white);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
-  }
-
-  .chi-sono-text p {
-    color: var(--text-light);
-    margin-bottom: 1rem;
-    font-weight: 300;
-    line-height: 1.9;
-  }
-
-  .competenze {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 2rem;
-  }
-
-  .competenza {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1.2rem;
-    border-left: 2px solid var(--teal-light);
-    background: var(--cream);
-  }
-
-  .competenza-icon {
-    color: var(--teal);
-    font-size: 1.2rem;
-    margin-top: 0.1rem;
-  }
-
-  .competenza-text strong {
-    display: block;
-    font-size: 0.88rem;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.2rem;
-    font-weight: 500;
-  }
-
-  .competenza-text span {
-    font-size: 0.82rem;
-    color: var(--text-light);
-  }
-
-  /* ─── SERVIZI ─── */
-  #servizi {
-    background: var(--cream);
-  }
-
-  .servizi-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
-  }
-
-  .servizio-card {
-    background: var(--white);
-    padding: 2.5rem;
-    border-bottom: 3px solid transparent;
-    transition: border-color 0.3s, transform 0.3s;
-  }
-
-  .servizio-card:hover {
-    border-color: var(--teal);
-    transform: translateY(-4px);
-  }
-
-  .servizio-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3rem;
-    font-weight: 300;
-    color: var(--beige-dark);
-    line-height: 1;
-    margin-bottom: 1rem;
-  }
-
-  .servizio-card h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem;
-    font-weight: 500;
-    margin-bottom: 0.8rem;
-  }
-
-  .servizio-card p {
-    font-size: 0.88rem;
-    color: var(--text-light);
-    line-height: 1.8;
-    font-weight: 300;
-  }
-
-  /* ─── PRENOTAZIONE ─── */
-  #prenotazione {
-    background: var(--teal);
-    color: var(--white);
-    text-align: center;
-  }
-
-  #prenotazione .section-label { color: var(--beige); }
-  #prenotazione .section-label::before { background: var(--beige); }
-  #prenotazione .section-title { color: var(--white); }
-
-  #prenotazione p {
-    color: rgba(255,255,255,0.8);
-    max-width: 520px;
-    margin: 0 auto 3rem;
-    font-weight: 300;
-    line-height: 1.8;
-  }
-
-  .prenotazione-box {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-    max-width: 560px;
-    margin: 0 auto;
-    padding: 3rem;
-    text-align: left;
-  }
-
-  .prenotazione-box h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem;
-    font-weight: 300;
-    margin-bottom: 0.5rem;
-    color: var(--white);
-  }
-
-  .prenotazione-box p {
-    font-size: 0.85rem;
-    margin-bottom: 2rem;
-    color: rgba(255,255,255,0.7);
-  }
-
-  .prenotazione-email-link {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    background: rgba(255,255,255,0.15);
-    padding: 1.2rem 1.5rem;
-    margin-bottom: 2rem;
-    color: var(--white);
-    text-decoration: none;
-    font-size: 0.9rem;
-    letter-spacing: 0.05em;
-    border: 1px solid rgba(255,255,255,0.25);
-    transition: background 0.3s;
-  }
-
-  .prenotazione-email-link:hover { background: rgba(255,255,255,0.25); }
-
-  .prenotazione-email-link svg {
-    flex-shrink: 0;
-    opacity: 0.8;
-  }
-
-  .prenotazione-note {
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.5);
-    line-height: 1.7;
-    text-align: center;
-  }
-
-  /* ─── PILLOLE / ARTICOLI ─── */
-  #pillole {
-    background: var(--white);
-  }
-
-  .pillole-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-  }
-
-  .pillola-card {
-    background: var(--cream);
-    padding: 2rem;
-    border-top: 2px solid var(--beige-dark);
-    transition: border-color 0.3s;
-    position: relative;
-  }
-
-  .pillola-card:hover { border-color: var(--teal); }
-
-  .pillola-tag {
-    font-size: 0.68rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--teal);
-    margin-bottom: 0.8rem;
-    display: block;
-  }
-
-  .pillola-card h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
-    font-weight: 500;
-    margin-bottom: 0.8rem;
-    line-height: 1.3;
-  }
-
-  .pillola-card p {
-    font-size: 0.85rem;
-    color: var(--text-light);
-    line-height: 1.8;
-    font-weight: 300;
-  }
-
-  .pillola-date {
-    font-size: 0.72rem;
-    color: var(--brown);
-    margin-top: 1.2rem;
-    letter-spacing: 0.05em;
-  }
-
-  /* ─── FOOTER ─── */
-  footer {
-    background: var(--text);
-    color: rgba(255,255,255,0.6);
-    padding: 3rem 6rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-
-  footer .logo-footer {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
-    color: var(--cream);
-    font-weight: 300;
-  }
-
-  footer p { font-size: 0.78rem; }
-
-  footer a {
-    color: var(--teal-light);
-    text-decoration: none;
-    font-size: 0.78rem;
-  }
-
-  footer a:hover { color: var(--teal); }
-
-  /* ─── ADMIN PANEL ─── */
-  #admin-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    background: rgba(0,0,0,0.5);
-    backdrop-filter: blur(4px);
-  }
-
-  #admin-panel {
-    position: fixed;
-    right: 0; top: 0; bottom: 0;
-    width: min(600px, 100vw);
-    background: var(--white);
-    z-index: 1001;
-    overflow-y: auto;
-    box-shadow: -8px 0 40px rgba(0,0,0,0.15);
-    transform: translateX(100%);
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  #admin-panel.open { transform: translateX(0); }
-
-  .admin-header {
-    background: var(--teal);
-    color: var(--white);
-    padding: 1.5rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
-
-  .admin-header h2 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
-    font-weight: 400;
-  }
-
-  .admin-header small {
-    display: block;
-    font-size: 0.72rem;
-    opacity: 0.7;
-    letter-spacing: 0.1em;
-    margin-top: 0.2rem;
-  }
-
-  .admin-close {
-    background: none;
-    border: none;
-    color: var(--white);
-    font-size: 1.5rem;
-    cursor: pointer;
-    padding: 0.3rem;
-    opacity: 0.8;
-    transition: opacity 0.2s;
-  }
-
-  .admin-close:hover { opacity: 1; }
-
-  .admin-body { padding: 2rem; }
-
-  .admin-section {
-    margin-bottom: 2.5rem;
-    border: 1px solid var(--beige-dark);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-
-  .admin-section-header {
-    background: var(--beige);
-    padding: 1rem 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .admin-section-header h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.1rem;
-    font-weight: 500;
-  }
-
-  .admin-section-header span {
-    font-size: 0.8rem;
-    color: var(--text-light);
-  }
-
-  .admin-section-body {
-    padding: 1.5rem;
-    background: var(--white);
-  }
-
-  .admin-field { margin-bottom: 1.2rem; }
-
-  .admin-field label {
-    display: block;
-    font-size: 0.75rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-light);
-    margin-bottom: 0.4rem;
-  }
-
-  .admin-field input,
-  .admin-field textarea,
-  .admin-field select {
-    width: 100%;
-    padding: 0.7rem 1rem;
-    border: 1px solid var(--beige-dark);
-    background: var(--cream);
-    font-family: 'Jost', sans-serif;
-    font-size: 0.88rem;
-    color: var(--text);
-    outline: none;
-    transition: border-color 0.3s;
-  }
-
-  .admin-field input:focus,
-  .admin-field textarea:focus {
-    border-color: var(--teal);
-    background: var(--white);
-  }
-
-  .admin-field textarea { min-height: 80px; resize: vertical; }
-
-  .admin-btn {
-    background: var(--teal);
-    color: var(--white);
-    border: none;
-    padding: 0.7rem 1.5rem;
-    font-family: 'Jost', sans-serif;
-    font-size: 0.78rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-
-  .admin-btn:hover { background: var(--teal-dark); }
-
-  .admin-btn-danger {
-    background: #c0392b;
-    margin-left: 0.5rem;
-  }
-
-  .admin-btn-danger:hover { background: #a93226; }
-
-  .admin-item-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    margin-bottom: 1.2rem;
-  }
-
-  .admin-item {
-    background: var(--cream);
-    padding: 0.8rem 1rem;
-    border: 1px solid var(--beige-dark);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-
-  .admin-item-text { flex: 1; font-size: 0.85rem; line-height: 1.5; }
-  .admin-item-text strong { display: block; font-size: 0.88rem; }
-  .admin-item-text em { font-size: 0.78rem; color: var(--teal); font-style: normal; }
-
-  .admin-item-actions { display: flex; gap: 0.3rem; flex-shrink: 0; }
-
-  .admin-btn-sm {
-    background: none;
-    border: 1px solid var(--beige-dark);
-    padding: 0.3rem 0.7rem;
-    font-size: 0.72rem;
-    cursor: pointer;
-    font-family: 'Jost', sans-serif;
-    color: var(--text-light);
-    transition: all 0.2s;
-  }
-
-  .admin-btn-sm:hover { border-color: var(--teal); color: var(--teal); }
-  .admin-btn-sm.del:hover { border-color: #c0392b; color: #c0392b; }
-
-  .admin-divider {
-    border: none;
-    border-top: 1px dashed var(--beige-dark);
-    margin: 1.2rem 0;
-  }
-
-  .admin-login {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 2rem;
-  }
-
-  .admin-login h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
-    font-weight: 400;
-    margin-bottom: 0.5rem;
-  }
-
-  .admin-saved-msg {
-    background: #d4edda;
-    color: #155724;
-    padding: 0.6rem 1rem;
-    font-size: 0.82rem;
-    margin-top: 0.5rem;
-    display: none;
-  }
-
-  /* Admin trigger button */
-  .admin-trigger {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    background: var(--teal);
-    color: var(--white);
-    border: none;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    font-size: 1.1rem;
-    cursor: pointer;
-    box-shadow: 0 4px 20px rgba(74,124,126,0.4);
-    transition: transform 0.2s, background 0.2s;
-    z-index: 200;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .admin-trigger:hover {
-    background: var(--teal-dark);
-    transform: scale(1.1);
-  }
-
-  .admin-trigger-tooltip {
-    position: fixed;
-    bottom: 2rem;
-    right: 5rem;
-    background: var(--text);
-    color: var(--white);
-    font-size: 0.75rem;
-    padding: 0.4rem 0.8rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
-    white-space: nowrap;
-  }
-
-  .admin-trigger:hover + .admin-trigger-tooltip { opacity: 1; }
-
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 900px) {
-    nav { padding: 1rem 2rem; }
-    nav ul { gap: 1.5rem; }
-    .hero { grid-template-columns: 1fr; }
-    .hero-visual { min-height: 320px; }
-    .hero-text { padding: 4rem 2rem 3rem; }
-    section { padding: 4rem 2rem; }
-    #chi-sono { grid-template-columns: 1fr; gap: 3rem; }
-    .servizi-grid { grid-template-columns: 1fr; }
-    footer { flex-direction: column; padding: 2rem; text-align: center; }
+    --cream: #f5f0e8; --beige: #e8dfd0; --beige-dark: #d4c9b5;
+    --teal: #4a7c7e; --teal-dark: #3a6163; --teal-light: #6a9c9e; --teal-bg: #eaf3f3;
+    --brown: #8b7355; --text: #2c2420; --text-light: #6b5d52; --white: #fdfaf5;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Jost',sans-serif; background:var(--cream); color:var(--text); line-height:1.7; }
+
+  /* NAV */
+  nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; justify-content:space-between; align-items:center; padding:1.2rem 4rem; background:rgba(245,240,232,0.94); backdrop-filter:blur(10px); border-bottom:1px solid var(--beige-dark); }
+  .nav-logo { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:500; letter-spacing:0.05em; color:var(--text); text-decoration:none; }
+  .nav-logo span { color:var(--teal); }
+  nav ul { display:flex; gap:2.5rem; list-style:none; }
+  nav a { font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-light); text-decoration:none; transition:color 0.3s; }
+  nav a:hover { color:var(--teal); }
+
+  /* HERO */
+  .hero { min-height:100vh; display:grid; grid-template-columns:1fr 1fr; padding-top:80px; }
+  .hero-text { display:flex; flex-direction:column; justify-content:center; padding:5rem 4rem 5rem 6rem; }
+  .hero-tag { font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--teal); margin-bottom:1.5rem; display:flex; align-items:center; gap:0.8rem; }
+  .hero-tag::before { content:''; display:block; width:2rem; height:1px; background:var(--teal); }
+  .hero h1 { font-family:'Cormorant Garamond',serif; font-size:clamp(2.8rem,4vw,4.2rem); font-weight:300; line-height:1.15; margin-bottom:1.5rem; }
+  .hero h1 em { font-style:italic; color:var(--teal); }
+  .hero-sub { font-size:0.95rem; color:var(--text-light); max-width:420px; margin-bottom:3rem; font-weight:300; line-height:1.8; }
+  .btn-primary { display:inline-block; background:var(--teal); color:var(--white); padding:1rem 2.5rem; font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; transition:background 0.3s,transform 0.2s; cursor:pointer; border:none; font-family:'Jost',sans-serif; }
+  .btn-primary:hover { background:var(--teal-dark); transform:translateY(-1px); }
+  .btn-outline { display:inline-block; border:1px solid var(--teal); color:var(--teal); padding:0.9rem 2.2rem; font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; transition:all 0.3s; cursor:pointer; background:transparent; font-family:'Jost',sans-serif; margin-left:1rem; }
+  .btn-outline:hover { background:var(--teal); color:var(--white); }
+  .hero-visual { background:var(--beige); position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+  .hero-visual-inner { text-align:center; padding:3rem; }
+  .quote-rotating { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:300; font-style:italic; color:var(--text); line-height:1.6; max-width:360px; margin:0 auto 1.5rem; min-height:5rem; display:flex; align-items:center; justify-content:center; transition:opacity 0.6s ease; }
+  .quote-author { font-size:0.75rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--teal); transition:opacity 0.6s ease; }
+  .quote-dots { display:flex; gap:0.5rem; justify-content:center; margin-top:2rem; }
+  .quote-dot { width:6px; height:6px; border-radius:50%; background:var(--beige-dark); cursor:pointer; transition:background 0.3s; }
+  .quote-dot.active { background:var(--teal); }
+  .hero-deco { position:absolute; width:300px; height:300px; border-radius:50%; border:1px solid var(--beige-dark); top:-50px; right:-50px; opacity:0.5; }
+  .hero-deco-2 { position:absolute; width:200px; height:200px; border-radius:50%; border:1px solid var(--beige-dark); bottom:30px; left:30px; opacity:0.4; }
+
+  /* SEZIONI */
+  section { padding:6rem; }
+  .section-label { font-size:0.72rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--teal); margin-bottom:1rem; display:flex; align-items:center; gap:0.8rem; }
+  .section-label::before { content:''; display:block; width:2rem; height:1px; background:var(--teal); }
+  .section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,3vw,3rem); font-weight:300; line-height:1.2; margin-bottom:1.5rem; }
+
+  /* CHI SONO */
+  #chi-sono { background:var(--white); display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:start; }
+  .chi-sono-text p { color:var(--text-light); margin-bottom:1rem; font-weight:300; line-height:1.9; }
+  .chi-sono-foto { width:100%; max-width:340px; display:block; margin:0 auto 2rem; object-fit:cover; aspect-ratio:3/4; }
+  .chi-sono-foto-placeholder { width:100%; max-width:340px; aspect-ratio:3/4; background:var(--beige); display:flex; align-items:center; justify-content:center; margin:0 auto 2rem; flex-direction:column; gap:0.8rem; color:var(--text-light); font-size:0.8rem; text-align:center; padding:1rem; }
+  .competenze { display:flex; flex-direction:column; gap:1rem; margin-top:1.5rem; }
+  .competenza { display:flex; align-items:flex-start; gap:1rem; padding:1.2rem; border-left:2px solid var(--teal-light); background:var(--cream); }
+  .competenza-icon { color:var(--teal); margin-top:0.1rem; }
+  .competenza-text strong { display:block; font-size:0.88rem; letter-spacing:0.05em; margin-bottom:0.2rem; font-weight:500; }
+  .competenza-text span { font-size:0.82rem; color:var(--text-light); }
+
+  /* SERVIZI */
+  #servizi { background:var(--cream); }
+  .servizi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; margin-top:3rem; }
+  .servizio-card { background:var(--white); padding:2.5rem; border-bottom:3px solid transparent; transition:border-color 0.3s,transform 0.3s; }
+  .servizio-card:hover { border-color:var(--teal); transform:translateY(-4px); }
+  .servizio-num { font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:300; color:var(--beige-dark); line-height:1; margin-bottom:1rem; }
+  .servizio-card h3 { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:500; margin-bottom:0.8rem; }
+  .servizio-card p { font-size:0.88rem; color:var(--text-light); line-height:1.8; font-weight:300; }
+
+  /* PRENOTAZIONE */
+  #prenotazione { background:var(--teal); color:var(--white); text-align:center; }
+  #prenotazione .section-label { color:var(--beige); }
+  #prenotazione .section-label::before { background:var(--beige); }
+  #prenotazione .section-title { color:var(--white); }
+  #prenotazioneTesto { color:rgba(255,255,255,0.8); max-width:520px; margin:0 auto 3rem; font-weight:300; line-height:1.8; }
+  .prenotazione-wrapper { display:flex; gap:2rem; justify-content:center; flex-wrap:wrap; }
+  .prenotazione-box { background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); max-width:400px; width:100%; padding:2.5rem; text-align:left; }
+  .prenotazione-box h3 { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:300; margin-bottom:0.5rem; color:var(--white); }
+  .prenotazione-box .sub { font-size:0.85rem; margin-bottom:1.5rem; color:rgba(255,255,255,0.7); }
+  .prenotazione-email-link { display:flex; align-items:center; gap:1rem; background:rgba(255,255,255,0.15); padding:1.2rem 1.5rem; color:var(--white); text-decoration:none; font-size:0.88rem; border:1px solid rgba(255,255,255,0.25); transition:background 0.3s; }
+  .prenotazione-email-link:hover { background:rgba(255,255,255,0.25); }
+  .prenotazione-note { font-size:0.76rem; color:rgba(255,255,255,0.5); margin-top:1rem; line-height:1.7; }
+  .btn-form { display:block; background:var(--white); color:var(--teal-dark); padding:1rem 1.5rem; font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; text-decoration:none; transition:background 0.3s; text-align:center; font-family:'Jost',sans-serif; font-weight:500; }
+  .btn-form:hover { background:var(--cream); }
+
+  /* PILLOLE */
+  #pillole { background:var(--white); }
+  .pillole-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:2rem; margin-top:3rem; }
+  .pillola-card { background:var(--cream); padding:2rem; border-top:2px solid var(--beige-dark); transition:border-color 0.3s; }
+  .pillola-card:hover { border-color:var(--teal); }
+  .pillola-tag { font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--teal); margin-bottom:0.8rem; display:block; }
+  .pillola-card h3 { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:500; margin-bottom:0.8rem; line-height:1.3; }
+  .pillola-card p { font-size:0.85rem; color:var(--text-light); line-height:1.8; font-weight:300; }
+  .pillola-date { font-size:0.72rem; color:var(--brown); margin-top:1.2rem; }
+
+  /* SOCIAL BAR */
+  .social-bar { display:flex; gap:1rem; margin-top:2rem; flex-wrap:wrap; }
+  .social-link { display:flex; align-items:center; gap:0.6rem; padding:0.7rem 1.2rem; font-size:0.78rem; letter-spacing:0.08em; text-decoration:none; border:1px solid rgba(255,255,255,0.25); color:var(--white); transition:background 0.3s; font-family:'Jost',sans-serif; }
+  .social-link:hover { background:rgba(255,255,255,0.15); }
+  .social-link svg { flex-shrink:0; }
+  .social-link.wa { border-color:rgba(37,211,102,0.5); }
+  .social-link.wa:hover { background:rgba(37,211,102,0.15); }
+  .social-link.ig { border-color:rgba(225,48,108,0.4); }
+  .social-link.ig:hover { background:rgba(225,48,108,0.1); }
+
+  /* FOOTER */
+  footer { background:var(--text); color:rgba(255,255,255,0.6); padding:3rem 6rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; }
+  footer .logo-footer { font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--cream); font-weight:300; }
+  footer p { font-size:0.78rem; }
+  footer a { color:var(--teal-light); text-decoration:none; font-size:0.78rem; }
+  .footer-social { display:flex; gap:1.2rem; margin-top:0.6rem; }
+  .footer-social a { display:flex; align-items:center; gap:0.4rem; color:var(--teal-light); font-size:0.78rem; text-decoration:none; transition:color 0.2s; }
+  .footer-social a:hover { color:var(--white); }
+
+  /* ═══════════ ADMIN ═══════════ */
+  .admin-trigger { position:fixed; bottom:2rem; right:2rem; background:var(--teal); color:var(--white); border:none; width:50px; height:50px; border-radius:50%; font-size:1.1rem; cursor:pointer; box-shadow:0 4px 20px rgba(74,124,126,0.4); transition:transform 0.2s,background 0.2s; z-index:200; display:flex; align-items:center; justify-content:center; }
+  .admin-trigger:hover { background:var(--teal-dark); transform:scale(1.1); }
+  #admin-overlay { display:none; position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,0.45); backdrop-filter:blur(4px); }
+  #admin-panel { position:fixed; right:0; top:0; bottom:0; width:min(700px,100vw); background:var(--white); z-index:1001; overflow-y:auto; box-shadow:-8px 0 40px rgba(0,0,0,0.15); transform:translateX(100%); transition:transform 0.4s cubic-bezier(0.4,0,0.2,1); }
+  #admin-panel.open { transform:translateX(0); }
+  .admin-header { background:var(--teal); color:var(--white); padding:1.4rem 1.8rem; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:10; }
+  .admin-header h2 { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:400; }
+  .admin-header small { display:block; font-size:0.7rem; opacity:0.7; letter-spacing:0.1em; }
+  .admin-close { background:none; border:none; color:var(--white); font-size:1.5rem; cursor:pointer; opacity:0.8; }
+  .admin-close:hover { opacity:1; }
+  .admin-tabs { display:flex; border-bottom:2px solid var(--beige); position:sticky; top:68px; background:var(--white); z-index:9; }
+  .admin-tab { flex:1; padding:0.85rem 0.4rem; font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; border:none; background:none; cursor:pointer; color:var(--text-light); border-bottom:2px solid transparent; margin-bottom:-2px; transition:all 0.2s; font-family:'Jost',sans-serif; }
+  .admin-tab.active { color:var(--teal); border-bottom-color:var(--teal); font-weight:500; }
+  .admin-body { padding:1.6rem; }
+  .admin-pane { display:none; }
+  .admin-pane.active { display:block; }
+  .admin-section { margin-bottom:1.8rem; border:1px solid var(--beige-dark); }
+  .admin-section-header { background:var(--beige); padding:0.85rem 1.2rem; display:flex; justify-content:space-between; align-items:center; }
+  .admin-section-header h3 { font-family:'Cormorant Garamond',serif; font-size:1.05rem; font-weight:500; }
+  .admin-section-header span { font-size:0.74rem; color:var(--text-light); }
+  .admin-section-body { padding:1.2rem; }
+  .admin-field { margin-bottom:0.9rem; }
+  .admin-field label { display:block; font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-light); margin-bottom:0.3rem; }
+  .admin-field input,.admin-field textarea { width:100%; padding:0.6rem 0.9rem; border:1px solid var(--beige-dark); background:var(--cream); font-family:'Jost',sans-serif; font-size:0.87rem; color:var(--text); outline:none; transition:border-color 0.3s; }
+  .admin-field input:focus,.admin-field textarea:focus { border-color:var(--teal); background:var(--white); }
+  .admin-field textarea { min-height:70px; resize:vertical; }
+  .admin-btn { background:var(--teal); color:var(--white); border:none; padding:0.6rem 1.3rem; font-family:'Jost',sans-serif; font-size:0.73rem; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; transition:background 0.3s; }
+  .admin-btn:hover { background:var(--teal-dark); }
+  .admin-btn-danger { background:#c0392b; }
+  .admin-btn-danger:hover { background:#a93226; }
+  .admin-btn-sm { background:none; border:1px solid var(--beige-dark); padding:0.25rem 0.55rem; font-size:0.7rem; cursor:pointer; font-family:'Jost',sans-serif; color:var(--text-light); transition:all 0.2s; }
+  .admin-btn-sm.del:hover { border-color:#c0392b; color:#c0392b; }
+  .admin-btn-row { display:flex; gap:0.6rem; flex-wrap:wrap; margin-top:0.4rem; }
+  .admin-item-list { display:flex; flex-direction:column; gap:0.6rem; margin-bottom:0.8rem; }
+  .admin-item { background:var(--cream); padding:0.7rem 0.9rem; border:1px solid var(--beige-dark); display:flex; justify-content:space-between; align-items:flex-start; gap:0.8rem; }
+  .admin-item-text { flex:1; font-size:0.82rem; line-height:1.5; }
+  .admin-item-text strong { display:block; font-size:0.84rem; }
+  .admin-item-text em { font-size:0.75rem; color:var(--teal); font-style:normal; }
+  .admin-item-actions { display:flex; gap:0.3rem; flex-shrink:0; }
+  .admin-divider { border:none; border-top:1px dashed var(--beige-dark); margin:0.8rem 0; }
+  .admin-saved { background:#d4edda; color:#155724; padding:0.45rem 0.8rem; font-size:0.78rem; margin-top:0.5rem; display:none; }
+  .admin-info { background:var(--teal-bg); border-left:3px solid var(--teal); padding:0.8rem 1rem; font-size:0.81rem; color:var(--teal-dark); margin-bottom:1rem; line-height:1.65; }
+  .admin-info strong { display:block; font-size:0.75rem; letter-spacing:0.06em; text-transform:uppercase; margin-bottom:0.3rem; }
+  .stats-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.4rem; }
+  .stat-box { background:var(--teal-bg); padding:1.2rem; border-top:2px solid var(--teal); text-align:center; }
+  .stat-num { font-family:'Cormorant Garamond',serif; font-size:2.5rem; font-weight:300; color:var(--teal-dark); line-height:1; }
+  .stat-label { font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-light); margin-top:0.3rem; }
+  .stat-note { font-size:0.68rem; color:var(--text-light); margin-top:0.15rem; }
+  .step-list { list-style:none; display:flex; flex-direction:column; gap:0.7rem; }
+  .step-list li { display:flex; gap:0.8rem; font-size:0.83rem; color:var(--text-light); line-height:1.6; }
+  .step-num { background:var(--teal); color:var(--white); width:21px; height:21px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:0.67rem; flex-shrink:0; margin-top:0.1rem; }
+
+  /* SOCIAL LINKS */
+  .social-bar { display:flex; gap:1rem; align-items:center; flex-wrap:wrap; }
+  .social-link { display:flex; align-items:center; gap:0.6rem; background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.25); color:var(--white); text-decoration:none; padding:0.9rem 1.2rem; font-size:0.82rem; letter-spacing:0.03em; transition:background 0.3s; flex:1; min-width:180px; }
+  .social-link:hover { background:rgba(255,255,255,0.28); }
+  .social-link.wa { background:rgba(37,211,102,0.25); border-color:rgba(37,211,102,0.4); }
+  .social-link.wa:hover { background:rgba(37,211,102,0.38); }
+  .footer-socials { display:flex; gap:1rem; justify-content:flex-end; flex-wrap:wrap; }
+  .footer-social { display:inline-flex; align-items:center; gap:0.5rem; color:var(--teal-light); text-decoration:none; font-size:0.78rem; transition:color 0.2s; }
+  .footer-social:hover { color:var(--white); }
+  .nav-socials { display:flex; gap:0.8rem; align-items:center; margin-left:1rem; }
+  .nav-social { color:var(--text-light); transition:color 0.2s; display:flex; align-items:center; }
+  .nav-social:hover { color:var(--teal); }
+
+  /* RESPONSIVE */
+  @media(max-width:900px){
+    nav { padding:1rem 1.5rem; } nav ul { gap:1.2rem; }
+    .hero { grid-template-columns:1fr; } .hero-visual { min-height:300px; }
+    .hero-text { padding:4rem 1.5rem 3rem; } section { padding:4rem 1.5rem; }
+    #chi-sono { grid-template-columns:1fr; gap:2.5rem; }
+    .servizi-grid { grid-template-columns:1fr; }
+    footer { flex-direction:column; padding:2rem 1.5rem; text-align:center; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">Malamente <span>Psicologia</span></a>
   <ul>
@@ -815,22 +202,28 @@
     <li><a href="#pillole">Pillole</a></li>
     <li><a href="#prenotazione">Prenota</a></li>
   </ul>
+  <div class="nav-socials">
+    <a id="navIg" href="https://instagram.com/mala.mente.psicologa" target="_blank" class="nav-social" title="Instagram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a id="navWa" href="https://wa.me/39" target="_blank" class="nav-social" title="WhatsApp">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+    </a>
+  </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-text">
-    <div class="hero-tag">Psicologia clinica · Psicoterapia</div>
-    <h1>Un luogo per <em>stare</em> con ciò che sei</h1>
-    <p class="hero-sub">Benvenuta. Questo è uno spazio pensato per chi vuole capirsi meglio, attraversare momenti difficili e costruire qualcosa di più autentico per sé.</p>
+    <div class="hero-tag" id="heroTag"></div>
+    <h1 id="heroTitle"></h1>
+    <p class="hero-sub" id="heroSub"></p>
     <div>
       <a href="#prenotazione" class="btn-primary">Prenota un colloquio</a>
       <a href="#chi-sono" class="btn-outline">Scopri di più</a>
     </div>
   </div>
   <div class="hero-visual">
-    <div class="hero-deco"></div>
-    <div class="hero-deco-2"></div>
+    <div class="hero-deco"></div><div class="hero-deco-2"></div>
     <div class="hero-visual-inner">
       <div class="quote-rotating" id="quoteText"></div>
       <div class="quote-author" id="quoteAuthor"></div>
@@ -839,516 +232,568 @@
   </div>
 </section>
 
-<!-- CHI SONO -->
 <section id="chi-sono">
   <div class="chi-sono-text">
     <div class="section-label">Chi sono</div>
-    <h2 class="section-title">Dott.ssa Federica Dolmetti</h2>
-    <p>Sono una psicologa con formazione sistemico-relazionale. Lavoro con adulti che si trovano in momenti di cambiamento, difficoltà relazionale, o semplicemente con il desiderio di capirsi meglio.</p>
-    <p>Il mio approccio integra la prospettiva sistemico-relazionale con strumenti dalla psicologia clinica, cercando sempre di costruire insieme al paziente uno spazio autentico e non giudicante.</p>
+    <h2 class="section-title" id="chiSonoTitolo"></h2>
+    <div id="chiSonoBio"></div>
   </div>
-  <div class="competenze">
-    <div class="section-label">Ambiti di lavoro</div>
-    <div class="competenza">
-      <div class="competenza-icon">◆</div>
-      <div class="competenza-text">
-        <strong>Psicoterapia individuale</strong>
-        <span>Percorsi personalizzati per adulti e giovani adulti</span>
-      </div>
+  <div>
+    <div class="chi-sono-foto-placeholder" id="fotoPlaceholder">
+      <span style="font-size:2rem;opacity:0.3">◆</span>
+      <span>La tua foto apparirà qui.<br>Aggiungila dal pannello admin.</span>
     </div>
-    <div class="competenza">
-      <div class="competenza-icon">◆</div>
-      <div class="competenza-text">
-        <strong>Consulenza psicologica</strong>
-        <span>Spazio di ascolto e orientamento clinico</span>
-      </div>
-    </div>
-    <div class="competenza">
-      <div class="competenza-icon">◆</div>
-      <div class="competenza-text">
-        <strong>Neurodivergenza e inclusione</strong>
-        <span>Esperienza con adulti autistici e neurodivergenti</span>
-      </div>
-    </div>
-    <div class="competenza">
-      <div class="competenza-icon">◆</div>
-      <div class="competenza-text">
-        <strong>Approccio sistemico-relazionale</strong>
-        <span>Formazione specialistica in psicoterapia</span>
-      </div>
-    </div>
+    <img id="fotoImg" class="chi-sono-foto" style="display:none" alt="Dott.ssa Federica Dolmetti">
+    <div class="competenze" id="competenzeList"></div>
   </div>
 </section>
 
-<!-- SERVIZI -->
 <section id="servizi">
   <div class="section-label">Cosa offro</div>
   <h2 class="section-title">Servizi</h2>
-  <div class="servizi-grid" id="serviziGrid">
-    <!-- populated by JS -->
-  </div>
+  <div class="servizi-grid" id="serviziGrid"></div>
 </section>
 
-<!-- PRENOTAZIONE -->
 <section id="prenotazione">
   <div class="section-label">Inizia da qui</div>
   <h2 class="section-title">Prenota un colloquio</h2>
-  <p>Il primo passo è il più importante. Scrivimi per fissare un colloquio conoscitivo — senza impegno, senza fretta.</p>
-  <div class="prenotazione-box">
-    <h3>Contattami via email</h3>
-    <p>Scrivi qualche riga su di te e su come posso aiutarti. Ti rispondo entro 48 ore.</p>
-    <a href="mailto:malamente.psicologia@gmail.com?subject=Richiesta%20colloquio&body=Gentile%20Dott.ssa%20Dolmetti%2C%0A%0Ami%20chiamo%20...%20e%20vorrei%20richiedere%20un%20colloquio%20conoscitivo.%0A%0AGrazie" class="prenotazione-email-link">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-        <rect x="2" y="4" width="20" height="16" rx="2"/>
-        <path d="M2 7l10 7 10-7"/>
-      </svg>
-      malamente.psicologia@gmail.com
-    </a>
-    <p class="prenotazione-note">Il colloquio si svolge in presenza a Napoli o online tramite piattaforma sicura.</p>
+  <p id="prenotazioneTesto"></p>
+  <div class="prenotazione-wrapper">
+    <div class="prenotazione-box">
+      <h3>Scrivimi via email</h3>
+      <p class="sub">Raccontami qualcosa di te. Ti rispondo entro 48 ore.</p>
+      <a id="emailLink" href="mailto:malamente.psicologia@gmail.com?subject=Richiesta%20colloquio&body=Gentile%20Dott.ssa%20Dolmetti%2C%0A%0AMi%20chiamo%20...%20e%20vorrei%20richiedere%20un%20colloquio.%0A%0AGrazie" class="prenotazione-email-link" onclick="trackClick('email')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+        malamente.psicologia@gmail.com
+      </a>
+      <p class="prenotazione-note">Il colloquio si svolge in presenza a Napoli o online tramite piattaforma sicura.</p>
+    </div>
+    <div class="prenotazione-box">
+      <h3>Compila il modulo</h3>
+      <p class="sub">Preferisci un form strutturato? Clicca qui e ti contatterò io.</p>
+      <a id="formLink" href="#" target="_blank" class="btn-form" onclick="trackClick('form')">Apri il modulo di contatto</a>
+      <p class="prenotazione-note">Rispondo entro 48 ore lavorative.</p>
+    </div>
+    <div class="prenotazione-box">
+      <h3>Scrivimi su WhatsApp</h3>
+      <p class="sub">Per un contatto più diretto — rispondo appena possibile.</p>
+      <a id="waLink" href="https://wa.me/39" target="_blank" class="social-link wa" onclick="trackClick('whatsapp')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        Scrivimi su WhatsApp
+      </a>
+      <a id="igLinkPrenotazione" href="https://instagram.com/mala.mente.psicologa" target="_blank" class="social-link" style="margin-top:0.8rem" onclick="trackClick('instagram')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        @mala.mente.psicologa
+      </a>
+      <p class="prenotazione-note">Puoi anche seguirmi su Instagram per pillole e contenuti settimanali.</p>
+    </div>
   </div>
 </section>
 
-<!-- PILLOLE -->
 <section id="pillole">
   <div class="section-label">Riflessioni & risorse</div>
   <h2 class="section-title">Pillole di psicologia</h2>
-  <div class="pillole-grid" id="pilloleGrid">
-    <!-- populated by JS -->
-  </div>
+  <div class="pillole-grid" id="pilloleGrid"></div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div>
     <div class="logo-footer">Malamente Psicologia</div>
-    <p style="margin-top:0.3rem">Dott.ssa Federica Dolmetti — Psicologa</p>
+    <p id="footerSub" style="margin-top:0.3rem"></p>
   </div>
-  <div style="text-align:right">
-    <a href="https://instagram.com/mala.mente.psicologa" target="_blank">@mala.mente.psicologa</a>
-    <p style="margin-top:0.3rem">© 2025 Malamente Psicologia</p>
+  <div class="footer-socials">
+    <a id="igLink" href="https://instagram.com/mala.mente.psicologa" target="_blank" class="footer-social">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      @mala.mente.psicologa
+    </a>
+    <a id="waFooterLink" href="https://wa.me/39" target="_blank" class="footer-social">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+      WhatsApp
+    </a>
+    <p style="width:100%;text-align:right;font-size:0.75rem;margin-top:0.3rem">© 2025 Malamente Psicologia</p>
   </div>
 </footer>
 
-<!-- ADMIN TRIGGER -->
-<button class="admin-trigger" onclick="openAdmin()" title="Admin">⚙</button>
-<div class="admin-trigger-tooltip">Pannello admin</div>
-
-<!-- ADMIN OVERLAY -->
+<button class="admin-trigger" onclick="openAdmin()">⚙</button>
 <div id="admin-overlay" onclick="closeAdmin()"></div>
 
-<!-- ADMIN PANEL -->
 <div id="admin-panel">
   <div class="admin-header">
-    <div>
-      <h2>Pannello Admin</h2>
-      <small>Malamente Psicologia</small>
-    </div>
+    <div><h2>Pannello Admin</h2><small>Malamente Psicologia</small></div>
     <button class="admin-close" onclick="closeAdmin()">✕</button>
   </div>
 
   <!-- LOGIN -->
-  <div id="adminLogin" class="admin-login">
-    <h3>Accesso amministratore</h3>
+  <div id="adminLogin" style="padding:2rem;display:flex;flex-direction:column;gap:1rem">
+    <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem">Accesso amministratore</p>
     <div class="admin-field">
       <label>Password</label>
-      <input type="password" id="adminPasswordInput" placeholder="Inserisci la password" onkeydown="if(event.key==='Enter') checkAdminPassword()">
+      <input type="password" id="adminPasswordInput" placeholder="Inserisci la password" onkeydown="if(event.key==='Enter')checkAdminPassword()">
     </div>
     <button class="admin-btn" onclick="checkAdminPassword()">Accedi</button>
-    <p style="font-size:0.78rem;color:var(--text-light)">Password predefinita: <strong>malamente2025</strong><br>Cambiala nel pannello dopo il primo accesso.</p>
+    <p style="font-size:0.78rem;color:var(--text-light)">Password predefinita: <strong>malamente2025</strong></p>
   </div>
 
-  <!-- CONTENT (hidden until login) -->
+  <!-- CONTENUTO -->
   <div id="adminContent" style="display:none">
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="switchTab(this,'testi')">✎ Testi</button>
+      <button class="admin-tab" onclick="switchTab(this,'contenuti')">◆ Contenuti</button>
+      <button class="admin-tab" onclick="switchTab(this,'statistiche')">◉ Statistiche</button>
+      <button class="admin-tab" onclick="switchTab(this,'account')">⚙ Account</button>
+    </div>
     <div class="admin-body">
 
-      <!-- CITAZIONI -->
-      <div class="admin-section">
-        <div class="admin-section-header">
-          <h3>✦ Citazioni rotanti</h3>
-          <span id="quoteCount">0 citazioni</span>
-        </div>
-        <div class="admin-section-body">
-          <div class="admin-item-list" id="quoteList"></div>
-          <hr class="admin-divider">
-          <div class="admin-field">
-            <label>Testo citazione</label>
-            <textarea id="newQuoteText" placeholder="«Il coraggio è la grazia sotto pressione.»"></textarea>
-          </div>
-          <div class="admin-field">
-            <label>Autore</label>
-            <input type="text" id="newQuoteAuthor" placeholder="Ernest Hemingway">
-          </div>
-          <button class="admin-btn" onclick="addQuote()">+ Aggiungi citazione</button>
-          <div class="admin-saved-msg" id="quoteSaved">Citazione salvata ✓</div>
-        </div>
-      </div>
+      <!-- TESTI -->
+      <div class="admin-pane active" id="pane-testi">
 
-      <!-- PILLOLE -->
-      <div class="admin-section">
-        <div class="admin-section-header">
-          <h3>✦ Pillole & articoli</h3>
-          <span id="pilloleCount">0 pillole</span>
+        <div class="admin-section">
+          <div class="admin-section-header"><h3>Hero — Prima sezione</h3></div>
+          <div class="admin-section-body">
+            <div class="admin-field"><label>Tag sopra il titolo</label><input type="text" id="t_heroTag"></div>
+            <div class="admin-field"><label>Titolo — usa [em]parola[/em] per il corsivo colorato</label><input type="text" id="t_heroTitle"></div>
+            <div class="admin-field"><label>Sottotitolo</label><textarea id="t_heroSub"></textarea></div>
+            <div class="admin-btn-row"><button class="admin-btn" onclick="saveTesti()">Salva</button></div>
+            <div class="admin-saved" id="s_testi">Salvato ✓</div>
+          </div>
         </div>
-        <div class="admin-section-body">
-          <div class="admin-item-list" id="pilloleList"></div>
-          <hr class="admin-divider">
-          <div class="admin-field">
-            <label>Titolo</label>
-            <input type="text" id="newPillolaTitle" placeholder="Il peso dell'ansia da prestazione">
-          </div>
-          <div class="admin-field">
-            <label>Tag / categoria</label>
-            <input type="text" id="newPillolaTag" placeholder="Ansia · Benessere">
-          </div>
-          <div class="admin-field">
-            <label>Testo</label>
-            <textarea id="newPillolaText" placeholder="Descrivi la pillola..."></textarea>
-          </div>
-          <button class="admin-btn" onclick="addPillola()">+ Pubblica pillola</button>
-          <div class="admin-saved-msg" id="pillolaSaved">Pillola pubblicata ✓</div>
-        </div>
-      </div>
 
-      <!-- SERVIZI -->
-      <div class="admin-section">
-        <div class="admin-section-header">
-          <h3>✦ Servizi</h3>
-          <span>Modifica le card</span>
-        </div>
-        <div class="admin-section-body">
-          <div class="admin-item-list" id="serviziList"></div>
-          <hr class="admin-divider">
-          <div class="admin-field">
-            <label>Nome servizio</label>
-            <input type="text" id="newServizioName" placeholder="Percorso di psicoterapia">
+        <div class="admin-section">
+          <div class="admin-section-header"><h3>Chi sono</h3><span>Testo e foto</span></div>
+          <div class="admin-section-body">
+            <div class="admin-field"><label>Nome visualizzato</label><input type="text" id="t_chiSonoTitolo"></div>
+            <div class="admin-field"><label>Primo paragrafo</label><textarea id="t_bio1"></textarea></div>
+            <div class="admin-field"><label>Secondo paragrafo</label><textarea id="t_bio2"></textarea></div>
+            <div class="admin-field"><label>URL foto profilo</label><input type="text" id="t_fotoUrl" placeholder="https://raw.githubusercontent.com/tuonome/malamente-psicologia/main/foto.jpg"></div>
+            <div class="admin-info">
+              <strong>Come aggiungere la tua foto</strong>
+              1. Carica <strong>foto.jpg</strong> nella repo GitHub → Add file → Upload<br>
+              2. Clicca sul file → pulsante <strong>Raw</strong> → copia l'URL dalla barra del browser<br>
+              3. Incollalo qui sopra → Salva
+            </div>
+            <div class="admin-btn-row"><button class="admin-btn" onclick="saveChiSono()">Salva</button></div>
+            <div class="admin-saved" id="s_chiSono">Salvato ✓</div>
           </div>
-          <div class="admin-field">
-            <label>Descrizione</label>
-            <textarea id="newServizioDesc" placeholder="Descrizione del servizio..."></textarea>
-          </div>
-          <button class="admin-btn" onclick="addServizio()">+ Aggiungi servizio</button>
         </div>
-      </div>
 
-      <!-- PASSWORD -->
-      <div class="admin-section">
-        <div class="admin-section-header">
-          <h3>✦ Sicurezza</h3>
-          <span>Cambia password</span>
-        </div>
-        <div class="admin-section-body">
-          <div class="admin-field">
-            <label>Nuova password</label>
-            <input type="password" id="newPassword" placeholder="Nuova password">
+        <div class="admin-section">
+          <div class="admin-section-header"><h3>Ambiti di lavoro</h3><span id="compCount"></span></div>
+          <div class="admin-section-body">
+            <div class="admin-item-list" id="compList"></div>
+            <hr class="admin-divider">
+            <div class="admin-field"><label>Titolo</label><input type="text" id="newCompTitolo" placeholder="Psicoterapia individuale"></div>
+            <div class="admin-field"><label>Descrizione</label><input type="text" id="newCompDesc" placeholder="Percorsi per adulti e giovani adulti"></div>
+            <button class="admin-btn" onclick="addCompetenza()">+ Aggiungi</button>
+            <div class="admin-saved" id="s_comp">Aggiunto ✓</div>
           </div>
-          <div class="admin-field">
-            <label>Conferma password</label>
-            <input type="password" id="confirmPassword" placeholder="Ripeti la password">
-          </div>
-          <button class="admin-btn" onclick="changePassword()">Salva nuova password</button>
-          <div class="admin-saved-msg" id="pwSaved">Password aggiornata ✓</div>
         </div>
-      </div>
 
-      <button class="admin-btn admin-btn-danger" onclick="adminLogout()" style="width:100%;margin-top:1rem">Esci dall'admin</button>
+        <div class="admin-section">
+          <div class="admin-section-header"><h3>Sezione Prenota</h3></div>
+          <div class="admin-section-body">
+            <div class="admin-field"><label>Testo introduttivo</label><textarea id="t_prenotazioneTesto"></textarea></div>
+            <div class="admin-field"><label>Link Google Form (incolla l'URL del tuo form)</label><input type="text" id="t_formLink" placeholder="https://forms.gle/..."></div>
+            <div class="admin-btn-row"><button class="admin-btn" onclick="savePrenotazione()">Salva</button></div>
+            <div class="admin-saved" id="s_prenotazione">Salvato ✓</div>
+          </div>
+        </div>
+
+        <div class="admin-section">
+          <div class="admin-section-header"><h3>Footer & contatti social</h3></div>
+          <div class="admin-section-body">
+            <div class="admin-field"><label>Sottotitolo footer</label><input type="text" id="t_footerSub"></div>
+            <div class="admin-field"><label>Link Instagram (URL completo)</label><input type="text" id="t_igLink" placeholder="https://instagram.com/mala.mente.psicologa"></div>
+            <div class="admin-field"><label>Numero WhatsApp (solo cifre, con prefisso internazionale)</label><input type="text" id="t_waNumber" placeholder="393331234567"></div>
+            <div class="admin-info" style="margin-top:0.5rem">
+              <strong>Come inserire il numero WhatsApp</strong>
+              Scrivi il numero senza spazi o simboli, con il prefisso internazionale italiano: <strong>39</strong> seguito dal numero. Es: <strong>393331234567</strong>
+            </div>
+            <div class="admin-btn-row"><button class="admin-btn" onclick="saveFooter()">Salva</button></div>
+            <div class="admin-saved" id="s_footer">Salvato ✓</div>
+          </div>
+        </div>
+
+      </div><!-- /pane-testi -->
+
+      <!-- CONTENUTI -->
+      <div class="admin-pane" id="pane-contenuti">
+
+        <div class="admin-section">
+          <div class="admin-section-header"><h3>Citazioni rotanti</h3><span id="quoteCount"></span></div>
+          <div class="admin-section-body">
+            <div class="admin-item-list" id="quoteList"></div>
+            <hr class="admin-divider">
+            <div class="admin-field"><label>Citazione</label><textarea id="newQuoteText" placeholder="Le parole che vuoi mostrare..."></textarea></div>
+            <div class="admin-field"><label>Autore</label><input type="text" id="newQuoteAuthor" placeholder="Nome Autore"></div>
+            <button class="admin-btn" onclick="addQuote()">+ Aggiungi</button>
+            <div class="admin-saved" id="s_quote">Aggiunta ✓</div>
+          </div>
+        </div>
+
+        <div class="admin-section">
+          <div class="admin-section-header"><h3>Pillole & articoli</h3><span id="pilloleCount"></span></div>
+          <div class="admin-section-body">
+            <div class="admin-item-list" id="pilloleList"></div>
+            <hr class="admin-divider">
+            <div class="admin-field"><label>Titolo</label><input type="text" id="newPillolaTitle" placeholder="Il peso dell'ansia da prestazione"></div>
+            <div class="admin-field"><label>Tag / categoria</label><input type="text" id="newPillolaTag" placeholder="Ansia · Benessere"></div>
+            <div class="admin-field"><label>Testo</label><textarea id="newPillolaText" placeholder="Scrivi il contenuto..."></textarea></div>
+            <button class="admin-btn" onclick="addPillola()">+ Pubblica</button>
+            <div class="admin-saved" id="s_pillola">Pubblicata ✓</div>
+          </div>
+        </div>
+
+        <div class="admin-section">
+          <div class="admin-section-header"><h3>Servizi</h3><span id="serviziCount"></span></div>
+          <div class="admin-section-body">
+            <div class="admin-item-list" id="serviziList"></div>
+            <hr class="admin-divider">
+            <div class="admin-field"><label>Nome servizio</label><input type="text" id="newServizioName" placeholder="Supporto alla genitorialità"></div>
+            <div class="admin-field"><label>Descrizione</label><textarea id="newServizioDesc"></textarea></div>
+            <button class="admin-btn" onclick="addServizio()">+ Aggiungi</button>
+            <div class="admin-saved" id="s_servizio">Aggiunto ✓</div>
+          </div>
+        </div>
+
+      </div><!-- /pane-contenuti -->
+
+      <!-- STATISTICHE -->
+      <div class="admin-pane" id="pane-statistiche">
+
+        <div class="admin-info" style="margin-bottom:1.2rem">
+          <strong>Statistiche locali</strong>
+          Contatori registrati in questo browser. Per dati di traffico completi, configura Google Analytics qui sotto.
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-box"><div class="stat-num" id="statEmail">0</div><div class="stat-label">Click email</div><div class="stat-note">da questo browser</div></div>
+          <div class="stat-box"><div class="stat-num" id="statForm">0</div><div class="stat-label">Click modulo</div><div class="stat-note">da questo browser</div></div>
+          <div class="stat-box"><div class="stat-num" id="statWa">0</div><div class="stat-label">Click WhatsApp</div><div class="stat-note">da questo browser</div></div>
+          <div class="stat-box"><div class="stat-num" id="statIg">0</div><div class="stat-label">Click Instagram</div><div class="stat-note">da questo browser</div></div>
+          <div class="stat-box"><div class="stat-num" id="statPillole">0</div><div class="stat-label">Pillole pubblicate</div></div>
+          <div class="stat-box"><div class="stat-num" id="statQuote">0</div><div class="stat-label">Citazioni attive</div></div>
+        </div>
+        <button class="admin-btn" onclick="resetStats()" style="margin-bottom:1.5rem">Azzera contatori click</button>
+
+        <div class="admin-section">
+          <div class="admin-section-header"><h3>Google Analytics</h3><span>Visite reali</span></div>
+          <div class="admin-section-body">
+            <div class="admin-info">
+              <strong>Cosa vedi con GA4 (gratuito)</strong>
+              Visitatori giornalieri · Città · Dispositivi · Tempo sul sito · Pagine più viste
+            </div>
+            <ul class="step-list" style="margin-bottom:1rem">
+              <li><div class="step-num">1</div><div>Vai su <strong>analytics.google.com</strong> → nuovo account → nuova proprietà GA4</div></li>
+              <li><div class="step-num">2</div><div>Google ti dà un codice tipo <strong>G-XXXXXXXXXX</strong> — copialo</div></li>
+              <li><div class="step-num">3</div><div>Incollalo qui sotto → Salva → il codice si attiva automaticamente</div></li>
+            </ul>
+            <div class="admin-field"><label>Il tuo codice GA4</label><input type="text" id="gaCode" placeholder="G-XXXXXXXXXX"></div>
+            <div class="admin-btn-row"><button class="admin-btn" onclick="saveGa()">Salva codice Analytics</button></div>
+            <div class="admin-saved" id="s_ga">Codice salvato ✓ — ricarica la pagina per attivarlo</div>
+            <div id="gaStatus" style="font-size:0.78rem;color:var(--teal-dark);margin-top:0.6rem"></div>
+          </div>
+        </div>
+
+        <div class="admin-section">
+          <div class="admin-section-header"><h3>Risposte al Google Form</h3></div>
+          <div class="admin-section-body">
+            <div class="admin-info"><strong>Come vederle</strong>Le risposte vivono su Google per privacy — il sito non le memorizza.</div>
+            <ul class="step-list">
+              <li><div class="step-num">1</div><div>Vai su <strong>forms.google.com</strong> → apri il tuo form</div></li>
+              <li><div class="step-num">2</div><div>Tab <strong>"Risposte"</strong> → vedi quante persone hanno compilato</div></li>
+              <li><div class="step-num">3</div><div>Icona del foglio Google → esporta le risposte in un foglio di calcolo</div></li>
+              <li><div class="step-num">4</div><div>Nel form → ⋮ → <strong>"Ricevi notifiche email"</strong> per essere avvisata subito</div></li>
+            </ul>
+          </div>
+        </div>
+
+      </div><!-- /pane-statistiche -->
+
+      <!-- ACCOUNT -->
+      <div class="admin-pane" id="pane-account">
+
+        <div class="admin-section">
+          <div class="admin-section-header"><h3>Cambia password</h3></div>
+          <div class="admin-section-body">
+            <div class="admin-field"><label>Nuova password (min. 6 caratteri)</label><input type="password" id="newPassword" placeholder="Nuova password"></div>
+            <div class="admin-field"><label>Conferma</label><input type="password" id="confirmPassword" placeholder="Ripeti la password"></div>
+            <button class="admin-btn" onclick="changePassword()">Salva</button>
+            <div class="admin-saved" id="s_pw">Password aggiornata ✓</div>
+          </div>
+        </div>
+
+        <div class="admin-section">
+          <div class="admin-section-header"><h3>Backup dati</h3></div>
+          <div class="admin-section-body">
+            <p style="font-size:0.84rem;color:var(--text-light);margin-bottom:1rem">Esporta tutti i tuoi contenuti in un file .json come copia di sicurezza.</p>
+            <div class="admin-btn-row">
+              <button class="admin-btn" onclick="exportData()">⬇ Esporta backup</button>
+              <button class="admin-btn" style="background:var(--brown)" onclick="document.getElementById('importFile').click()">⬆ Importa backup</button>
+            </div>
+            <input type="file" id="importFile" accept=".json" style="display:none" onchange="handleImport(event)">
+          </div>
+        </div>
+
+        <button class="admin-btn admin-btn-danger" onclick="adminLogout()" style="width:100%;margin-top:1rem">Esci dall'admin</button>
+      </div>
 
     </div>
   </div>
 </div>
 
 <script>
-// ─── DATA STORE (localStorage) ───
-const STORAGE_KEY = 'malamente_data';
-const DEFAULT_PW = 'malamente2025';
-
-function getData() {
-  const raw = localStorage.getItem(STORAGE_KEY);
-  if (raw) return JSON.parse(raw);
+// ════ DATA ════
+const KEY = 'malamente_v2';
+function D() {
+  const r = localStorage.getItem(KEY);
+  if (r) return JSON.parse(r);
   return {
-    password: DEFAULT_PW,
-    quotes: [
-      { text: 'Non esiste un vento favorevole per il marinaio che non sa dove andare.', author: 'Seneca' },
-      { text: 'La vita non è quella vissuta, ma quella ricordata e come viene ricordata.', author: 'Gabriel García Márquez' },
-      { text: 'Conosci te stesso.', author: 'Socrate' },
+    password:'malamente2025', gaCode:'', clicks:{email:0,form:0},
+    testi:{
+      heroTag:'Psicologia clinica · Psicoterapia',
+      heroTitle:'Un luogo per [em]stare[/em] con ciò che sei',
+      heroSub:'Benvenuta. Questo è uno spazio pensato per chi vuole capirsi meglio, attraversare momenti difficili e costruire qualcosa di più autentico per sé.',
+      chiSonoTitolo:'Dott.ssa Federica Dolmetti',
+      bio1:"Sono una psicologa e psicoterapeuta in formazione sistemico-relazionale. Lavoro con adulti che si trovano in momenti di cambiamento, difficoltà relazionale, o semplicemente con il desiderio di capirsi meglio.",
+      bio2:"Il mio approccio integra la prospettiva sistemico-relazionale con strumenti dalla psicologia clinica, cercando sempre di costruire insieme al paziente uno spazio autentico e non giudicante.",
+      fotoUrl:'', prenotazioneTesto:"Il primo passo è il più importante. Scrivimi per fissare un colloquio conoscitivo — senza impegno, senza fretta.",
+      formLink:'', footerSub:'Dott.ssa Federica Dolmetti — Psicologa', igLink:'https://instagram.com/mala.mente.psicologa', waNumber:'39'
+    },
+    competenze:[
+      {titolo:'Psicoterapia individuale',desc:'Percorsi personalizzati per adulti e giovani adulti'},
+      {titolo:'Consulenza psicologica',desc:'Spazio di ascolto e orientamento clinico'},
+      {titolo:'Neurodivergenza e inclusione',desc:'Esperienza con adulti autistici e neurodivergenti'},
+      {titolo:'Supporto alla genitorialità',desc:'Percorsi per genitori, con attenzione alla neurodivergenza'}
     ],
-    pillole: [
-      { title: 'Cosa si intende per ansia?', tag: 'Ansia · Benessere', text: 'L\'ansia è una risposta normale dell\'organismo allo stress. Diventa un problema quando persiste e interferisce con la quotidianità. Riconoscerla è il primo passo.', date: '2025-04-01' },
-      { title: 'Il valore della vulnerabilità', tag: 'Relazioni · Crescita', text: 'Mostrarsi vulnerabili non è debolezza: è il modo in cui costruiamo connessioni autentiche con gli altri e con noi stessi.', date: '2025-03-20' },
+    quotes:[
+      {text:'Non esiste un vento favorevole per il marinaio che non sa dove andare.',author:'Seneca'},
+      {text:'La vita non è quella vissuta, ma quella ricordata e come viene ricordata.',author:'Gabriel García Márquez'},
+      {text:'Conosci te stesso.',author:'Socrate'}
     ],
-    servizi: [
-      { name: 'Psicoterapia individuale', desc: 'Percorsi di psicoterapia personalizzati per adulti e giovani adulti, con approccio sistemico-relazionale.' },
-      { name: 'Consulenza psicologica', desc: 'Uno o più colloqui di orientamento clinico, utili per capire come funzioni e cosa potrebbe aiutarti.' },
-      { name: 'Supporto online', desc: 'Sedute a distanza tramite piattaforma sicura, per chi non può o non vuole spostarsi.' },
+    pillole:[
+      {title:"Cosa si intende per ansia?",tag:'Ansia · Benessere',text:"L'ansia è una risposta normale dell'organismo allo stress. Diventa un problema quando persiste e interferisce con la quotidianità.",date:'2025-04-01'},
+      {title:'Il valore della vulnerabilità',tag:'Relazioni · Crescita',text:'Mostrarsi vulnerabili non è debolezza: è il modo in cui costruiamo connessioni autentiche con gli altri e con noi stessi.',date:'2025-03-20'}
+    ],
+    servizi:[
+      {name:'Psicoterapia individuale',desc:'Percorsi personalizzati con approccio sistemico-relazionale.'},
+      {name:'Consulenza psicologica',desc:'Uno o più colloqui di orientamento clinico.'},
+      {name:'Supporto alla genitorialità',desc:"Uno spazio per i genitori che vogliono capire meglio i propri figli, sostenere la relazione e attraversare insieme le sfide della genitorialità — anche quando il figlio ha un funzionamento diverso."}
     ]
   };
 }
+function S(d){ localStorage.setItem(KEY,JSON.stringify(d)); }
 
-function saveData(data) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-}
-
-// ─── QUOTES ───
-let currentQuote = 0;
-let quoteInterval;
-
-function renderQuotes() {
-  const data = getData();
-  const quotes = data.quotes;
-  if (!quotes.length) return;
-
-  const textEl = document.getElementById('quoteText');
-  const authorEl = document.getElementById('quoteAuthor');
-  const dotsEl = document.getElementById('quoteDots');
-
-  function show(i) {
-    textEl.style.opacity = 0;
-    authorEl.style.opacity = 0;
-    setTimeout(() => {
-      textEl.textContent = '«' + quotes[i].text + '»';
-      authorEl.textContent = '— ' + quotes[i].author;
-      textEl.style.opacity = 1;
-      authorEl.style.opacity = 1;
-      document.querySelectorAll('.quote-dot').forEach((d,j) => d.classList.toggle('active', j===i));
-    }, 300);
-    currentQuote = i;
-  }
-
-  dotsEl.innerHTML = quotes.map((_, i) => `<div class="quote-dot${i===0?' active':''}" onclick="showQuote(${i})"></div>`).join('');
-  show(0);
-
-  clearInterval(quoteInterval);
-  quoteInterval = setInterval(() => show((currentQuote + 1) % quotes.length), 5000);
-}
-
-window.showQuote = function(i) {
-  clearInterval(quoteInterval);
-  const data = getData();
-  const quotes = data.quotes;
-  const textEl = document.getElementById('quoteText');
-  const authorEl = document.getElementById('quoteAuthor');
-  textEl.style.opacity = 0;
-  authorEl.style.opacity = 0;
-  setTimeout(() => {
-    textEl.textContent = '«' + quotes[i].text + '»';
-    authorEl.textContent = '— ' + quotes[i].author;
-    textEl.style.opacity = 1;
-    authorEl.style.opacity = 1;
-    document.querySelectorAll('.quote-dot').forEach((d,j) => d.classList.toggle('active', j===i));
-    currentQuote = i;
-  }, 300);
-  quoteInterval = setInterval(() => showQuote((currentQuote+1)%quotes.length), 5000);
-};
-
-// ─── PILLOLE ───
-function renderPillole() {
-  const data = getData();
-  const grid = document.getElementById('pilloleGrid');
-  grid.innerHTML = data.pillole.map((p, i) => `
-    <div class="pillola-card">
-      <span class="pillola-tag">${p.tag}</span>
-      <h3>${p.title}</h3>
-      <p>${p.text}</p>
-      <div class="pillola-date">${formatDate(p.date)}</div>
-    </div>
-  `).join('') || '<p style="color:var(--text-light);font-size:0.88rem">Nessuna pillola ancora. Aggiungile dal pannello admin.</p>';
-}
-
-function formatDate(str) {
-  const d = new Date(str);
-  return d.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
-}
-
-// ─── SERVIZI ───
-function renderServizi() {
-  const data = getData();
-  const grid = document.getElementById('serviziGrid');
-  grid.innerHTML = data.servizi.map((s, i) => `
-    <div class="servizio-card">
-      <div class="servizio-num">0${i+1}</div>
-      <h3>${s.name}</h3>
-      <p>${s.desc}</p>
-    </div>
-  `).join('');
-}
-
-// ─── ADMIN ───
-window.openAdmin = function() {
-  document.getElementById('admin-overlay').style.display = 'block';
-  setTimeout(() => document.getElementById('admin-panel').classList.add('open'), 10);
-};
-
-window.closeAdmin = function() {
-  document.getElementById('admin-panel').classList.remove('open');
-  setTimeout(() => document.getElementById('admin-overlay').style.display = 'none', 400);
-};
-
-window.checkAdminPassword = function() {
-  const data = getData();
-  const input = document.getElementById('adminPasswordInput').value;
-  if (input === data.password) {
-    document.getElementById('adminLogin').style.display = 'none';
-    document.getElementById('adminContent').style.display = 'block';
-    renderAdminQuotes();
-    renderAdminPillole();
-    renderAdminServizi();
+// ════ RENDER ════
+function renderAll(){
+  const d=D(), t=d.testi;
+  document.getElementById('heroTag').textContent=t.heroTag;
+  document.getElementById('heroTitle').innerHTML=t.heroTitle.replace(/\[em\](.*?)\[\/em\]/g,'<em>$1</em>');
+  document.getElementById('heroSub').textContent=t.heroSub;
+  document.getElementById('chiSonoTitolo').textContent=t.chiSonoTitolo;
+  document.getElementById('chiSonoBio').innerHTML=`<p>${t.bio1}</p><p style="margin-top:1rem">${t.bio2}</p>`;
+  if(t.fotoUrl){
+    document.getElementById('fotoPlaceholder').style.display='none';
+    const img=document.getElementById('fotoImg'); img.src=t.fotoUrl; img.style.display='block';
   } else {
-    document.getElementById('adminPasswordInput').style.borderColor = '#c0392b';
-    document.getElementById('adminPasswordInput').value = '';
-    document.getElementById('adminPasswordInput').placeholder = 'Password errata. Riprova.';
+    document.getElementById('fotoPlaceholder').style.display='flex';
+    document.getElementById('fotoImg').style.display='none';
   }
-};
-
-window.adminLogout = function() {
-  document.getElementById('adminLogin').style.display = 'flex';
-  document.getElementById('adminContent').style.display = 'none';
-  document.getElementById('adminPasswordInput').value = '';
-  closeAdmin();
-};
-
-// Admin: quotes
-function renderAdminQuotes() {
-  const data = getData();
-  const list = document.getElementById('quoteList');
-  document.getElementById('quoteCount').textContent = data.quotes.length + ' citazioni';
-  list.innerHTML = data.quotes.map((q, i) => `
-    <div class="admin-item">
-      <div class="admin-item-text">
-        <strong>«${q.text.substring(0,60)}${q.text.length>60?'…':''}»</strong>
-        <em>— ${q.author}</em>
-      </div>
-      <div class="admin-item-actions">
-        <button class="admin-btn-sm del" onclick="deleteQuote(${i})">✕</button>
-      </div>
-    </div>
-  `).join('') || '<p style="font-size:0.82rem;color:var(--text-light)">Nessuna citazione.</p>';
+  document.getElementById('competenzeList').innerHTML=d.competenze.map(c=>`
+    <div class="competenza"><div class="competenza-icon">◆</div><div class="competenza-text"><strong>${c.titolo}</strong><span>${c.desc}</span></div></div>`).join('');
+  document.getElementById('prenotazioneTesto').textContent=t.prenotazioneTesto;
+  const fl=document.getElementById('formLink');
+  fl.href=t.formLink||'#'; fl.textContent=t.formLink?'Apri il modulo di contatto':'Modulo non ancora configurato';
+  document.getElementById('footerSub').textContent=t.footerSub;
+  const igHref=t.igLink||'https://instagram.com/mala.mente.psicologa';
+  const waHref='https://wa.me/'+(t.waNumber||'39');
+  document.getElementById('igLink').href=igHref;
+  if(document.getElementById('igLinkPrenotazione')) document.getElementById('igLinkPrenotazione').href=igHref;
+  if(document.getElementById('navIg')) document.getElementById('navIg').href=igHref;
+  if(document.getElementById('waLink')) document.getElementById('waLink').href=waHref;
+  if(document.getElementById('waFooterLink')) document.getElementById('waFooterLink').href=waHref;
+  if(document.getElementById('navWa')) document.getElementById('navWa').href=waHref;
+  document.getElementById('serviziGrid').innerHTML=d.servizi.map((s,i)=>`
+    <div class="servizio-card"><div class="servizio-num">0${i+1}</div><h3>${s.name}</h3><p>${s.desc}</p></div>`).join('');
+  document.getElementById('pilloleGrid').innerHTML=d.pillole.length
+    ? d.pillole.map(p=>`<div class="pillola-card"><span class="pillola-tag">${p.tag}</span><h3>${p.title}</h3><p>${p.text}</p><div class="pillola-date">${fmt(p.date)}</div></div>`).join('')
+    : '<p style="color:var(--text-light);font-size:0.88rem">Nessuna pillola ancora.</p>';
+  if(d.gaCode) injectGA(d.gaCode);
 }
 
-window.addQuote = function() {
-  const text = document.getElementById('newQuoteText').value.trim();
-  const author = document.getElementById('newQuoteAuthor').value.trim();
-  if (!text || !author) return;
-  const data = getData();
-  data.quotes.push({ text, author });
-  saveData(data);
-  document.getElementById('newQuoteText').value = '';
-  document.getElementById('newQuoteAuthor').value = '';
-  renderAdminQuotes();
-  renderQuotes();
-  showSaved('quoteSaved');
+function fmt(s){ return new Date(s).toLocaleDateString('it-IT',{day:'numeric',month:'long',year:'numeric'}); }
+
+// ════ QUOTE ROTATION ════
+let qi=0,qt;
+function renderQuotes(){
+  const qs=D().quotes; if(!qs.length) return;
+  document.getElementById('quoteDots').innerHTML=qs.map((_,i)=>`<div class="quote-dot${i===0?' active':''}" onclick="showQ(${i})"></div>`).join('');
+  showQ(0); clearInterval(qt); qt=setInterval(()=>showQ((qi+1)%qs.length),5000);
+}
+window.showQ=function(i){
+  const qs=D().quotes,tEl=document.getElementById('quoteText'),aEl=document.getElementById('quoteAuthor');
+  tEl.style.opacity=0; aEl.style.opacity=0;
+  setTimeout(()=>{
+    tEl.textContent='«'+qs[i].text+'»'; aEl.textContent='— '+qs[i].author;
+    tEl.style.opacity=1; aEl.style.opacity=1;
+    document.querySelectorAll('.quote-dot').forEach((d,j)=>d.classList.toggle('active',j===i));
+    qi=i;
+  },300);
 };
 
-window.deleteQuote = function(i) {
-  const data = getData();
-  data.quotes.splice(i, 1);
-  saveData(data);
-  renderAdminQuotes();
-  renderQuotes();
-};
+// ════ TRACKING ════
+window.trackClick=function(type){ const d=D(); d.clicks[type]=(d.clicks[type]||0)+1; S(d); };
 
-// Admin: pillole
-function renderAdminPillole() {
-  const data = getData();
-  const list = document.getElementById('pilloleList');
-  document.getElementById('pilloleCount').textContent = data.pillole.length + ' pillole';
-  list.innerHTML = data.pillole.map((p, i) => `
-    <div class="admin-item">
-      <div class="admin-item-text">
-        <strong>${p.title}</strong>
-        <em>${p.tag}</em>
-      </div>
-      <div class="admin-item-actions">
-        <button class="admin-btn-sm del" onclick="deletePillola(${i})">✕</button>
-      </div>
-    </div>
-  `).join('') || '<p style="font-size:0.82rem;color:var(--text-light)">Nessuna pillola.</p>';
+// ════ GA ════
+function injectGA(code){
+  if(document.getElementById('ga-s')) return;
+  const s=document.createElement('script'); s.id='ga-s'; s.async=true;
+  s.src='https://www.googletagmanager.com/gtag/js?id='+code; document.head.appendChild(s);
+  const s2=document.createElement('script');
+  s2.textContent=`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${code}');`;
+  document.head.appendChild(s2);
 }
 
-window.addPillola = function() {
-  const title = document.getElementById('newPillolaTitle').value.trim();
-  const tag = document.getElementById('newPillolaTag').value.trim();
-  const text = document.getElementById('newPillolaText').value.trim();
-  if (!title || !text) return;
-  const data = getData();
-  data.pillole.unshift({ title, tag: tag || 'Psicologia', text, date: new Date().toISOString().split('T')[0] });
-  saveData(data);
-  document.getElementById('newPillolaTitle').value = '';
-  document.getElementById('newPillolaTag').value = '';
-  document.getElementById('newPillolaText').value = '';
-  renderAdminPillole();
-  renderPillole();
-  showSaved('pillolaSaved');
+// ════ ADMIN ════
+window.openAdmin=function(){ document.getElementById('admin-overlay').style.display='block'; setTimeout(()=>document.getElementById('admin-panel').classList.add('open'),10); };
+window.closeAdmin=function(){ document.getElementById('admin-panel').classList.remove('open'); setTimeout(()=>document.getElementById('admin-overlay').style.display='none',400); };
+window.checkAdminPassword=function(){
+  const d=D(), v=document.getElementById('adminPasswordInput').value;
+  if(v===d.password){ document.getElementById('adminLogin').style.display='none'; document.getElementById('adminContent').style.display='block'; loadAdmin(); }
+  else { const i=document.getElementById('adminPasswordInput'); i.style.borderColor='#c0392b'; i.value=''; i.placeholder='Password errata. Riprova.'; }
+};
+window.adminLogout=function(){ document.getElementById('adminLogin').style.display='flex'; document.getElementById('adminContent').style.display='none'; document.getElementById('adminPasswordInput').value=''; closeAdmin(); };
+window.switchTab=function(btn,name){
+  document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.admin-pane').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active'); document.getElementById('pane-'+name).classList.add('active');
+  if(name==='statistiche') refreshStats();
 };
 
-window.deletePillola = function(i) {
-  const data = getData();
-  data.pillole.splice(i, 1);
-  saveData(data);
-  renderAdminPillole();
-  renderPillole();
-};
-
-// Admin: servizi
-function renderAdminServizi() {
-  const data = getData();
-  const list = document.getElementById('serviziList');
-  list.innerHTML = data.servizi.map((s, i) => `
-    <div class="admin-item">
-      <div class="admin-item-text">
-        <strong>${s.name}</strong>
-        <em>${s.desc.substring(0,60)}…</em>
-      </div>
-      <div class="admin-item-actions">
-        <button class="admin-btn-sm del" onclick="deleteServizio(${i})">✕</button>
-      </div>
-    </div>
-  `).join('');
+function loadAdmin(){
+  const d=D(),t=d.testi;
+  ['heroTag','heroTitle','heroSub','chiSonoTitolo','bio1','bio2','fotoUrl','prenotazioneTesto','formLink','footerSub','igLink','waNumber'].forEach(k=>{
+    const el=document.getElementById('t_'+k); if(el) el.value=t[k]||'';
+  });
+  document.getElementById('gaCode').value=d.gaCode||'';
+  if(d.gaCode) document.getElementById('gaStatus').textContent='✓ Attivo: '+d.gaCode;
+  renderAdminComp(); renderAdminQuote(); renderAdminPillole(); renderAdminServizi(); refreshStats();
 }
 
-window.addServizio = function() {
-  const name = document.getElementById('newServizioName').value.trim();
-  const desc = document.getElementById('newServizioDesc').value.trim();
-  if (!name || !desc) return;
-  const data = getData();
-  data.servizi.push({ name, desc });
-  saveData(data);
-  document.getElementById('newServizioName').value = '';
-  document.getElementById('newServizioDesc').value = '';
-  renderAdminServizi();
-  renderServizi();
-};
+function showSaved(id){ const el=document.getElementById(id); el.style.display='block'; setTimeout(()=>el.style.display='none',2500); }
 
-window.deleteServizio = function(i) {
-  const data = getData();
-  data.servizi.splice(i, 1);
-  saveData(data);
-  renderAdminServizi();
-  renderServizi();
-};
+// SAVE TESTI
+window.saveTesti=function(){ const d=D(); ['heroTag','heroTitle','heroSub'].forEach(k=>d.testi[k]=document.getElementById('t_'+k).value); S(d); renderAll(); showSaved('s_testi'); };
+window.saveChiSono=function(){ const d=D(); ['chiSonoTitolo','bio1','bio2','fotoUrl'].forEach(k=>d.testi[k]=document.getElementById('t_'+k).value.trim()||document.getElementById('t_'+k).value); S(d); renderAll(); showSaved('s_chiSono'); };
+window.savePrenotazione=function(){ const d=D(); d.testi.prenotazioneTesto=document.getElementById('t_prenotazioneTesto').value; d.testi.formLink=document.getElementById('t_formLink').value.trim(); S(d); renderAll(); showSaved('s_prenotazione'); };
+window.saveFooter=function(){ const d=D(); d.testi.footerSub=document.getElementById('t_footerSub').value; d.testi.igLink=document.getElementById('t_igLink').value.trim(); d.testi.waNumber=document.getElementById('t_waNumber').value.trim(); S(d); renderAll(); showSaved('s_footer'); };
 
-// Admin: password
-window.changePassword = function() {
-  const np = document.getElementById('newPassword').value;
-  const cp = document.getElementById('confirmPassword').value;
-  if (!np || np !== cp) return alert('Le password non coincidono.');
-  if (np.length < 6) return alert('Password troppo corta (min. 6 caratteri).');
-  const data = getData();
-  data.password = np;
-  saveData(data);
-  document.getElementById('newPassword').value = '';
-  document.getElementById('confirmPassword').value = '';
-  showSaved('pwSaved');
-};
-
-function showSaved(id) {
-  const el = document.getElementById(id);
-  el.style.display = 'block';
-  setTimeout(() => el.style.display = 'none', 2500);
+// COMPETENZE
+function renderAdminComp(){
+  const d=D(); document.getElementById('compCount').textContent=d.competenze.length+' voci';
+  document.getElementById('compList').innerHTML=d.competenze.map((c,i)=>`
+    <div class="admin-item"><div class="admin-item-text"><strong>${c.titolo}</strong><em>${c.desc}</em></div>
+    <div class="admin-item-actions"><button class="admin-btn-sm del" onclick="delComp(${i})">✕</button></div></div>`).join('');
 }
+window.addCompetenza=function(){
+  const t=document.getElementById('newCompTitolo').value.trim(),de=document.getElementById('newCompDesc').value.trim();
+  if(!t) return; const d=D(); d.competenze.push({titolo:t,desc:de}); S(d);
+  document.getElementById('newCompTitolo').value=''; document.getElementById('newCompDesc').value='';
+  renderAdminComp(); renderAll(); showSaved('s_comp');
+};
+window.delComp=function(i){ const d=D(); d.competenze.splice(i,1); S(d); renderAdminComp(); renderAll(); };
 
-// ─── INIT ───
+// QUOTE
+function renderAdminQuote(){
+  const d=D(); document.getElementById('quoteCount').textContent=d.quotes.length+' citazioni';
+  document.getElementById('quoteList').innerHTML=d.quotes.map((q,i)=>`
+    <div class="admin-item"><div class="admin-item-text"><strong>«${q.text.substring(0,55)}…»</strong><em>— ${q.author}</em></div>
+    <div class="admin-item-actions"><button class="admin-btn-sm del" onclick="delQuote(${i})">✕</button></div></div>`).join('')
+    ||'<p style="font-size:0.82rem;color:var(--text-light)">Nessuna citazione.</p>';
+}
+window.addQuote=function(){
+  const text=document.getElementById('newQuoteText').value.trim(),author=document.getElementById('newQuoteAuthor').value.trim();
+  if(!text||!author) return; const d=D(); d.quotes.push({text,author}); S(d);
+  document.getElementById('newQuoteText').value=''; document.getElementById('newQuoteAuthor').value='';
+  renderAdminQuote(); renderQuotes(); showSaved('s_quote');
+};
+window.delQuote=function(i){ const d=D(); d.quotes.splice(i,1); S(d); renderAdminQuote(); renderQuotes(); };
+
+// PILLOLE
+function renderAdminPillole(){
+  const d=D(); document.getElementById('pilloleCount').textContent=d.pillole.length+' pillole';
+  document.getElementById('pilloleList').innerHTML=d.pillole.map((p,i)=>`
+    <div class="admin-item"><div class="admin-item-text"><strong>${p.title}</strong><em>${p.tag}</em></div>
+    <div class="admin-item-actions"><button class="admin-btn-sm del" onclick="delPillola(${i})">✕</button></div></div>`).join('')
+    ||'<p style="font-size:0.82rem;color:var(--text-light)">Nessuna pillola.</p>';
+}
+window.addPillola=function(){
+  const title=document.getElementById('newPillolaTitle').value.trim(),tag=document.getElementById('newPillolaTag').value.trim(),text=document.getElementById('newPillolaText').value.trim();
+  if(!title||!text) return; const d=D(); d.pillole.unshift({title,tag:tag||'Psicologia',text,date:new Date().toISOString().split('T')[0]}); S(d);
+  document.getElementById('newPillolaTitle').value=''; document.getElementById('newPillolaTag').value=''; document.getElementById('newPillolaText').value='';
+  renderAdminPillole(); renderAll(); refreshStats(); showSaved('s_pillola');
+};
+window.delPillola=function(i){ const d=D(); d.pillole.splice(i,1); S(d); renderAdminPillole(); renderAll(); refreshStats(); };
+
+// SERVIZI
+function renderAdminServizi(){
+  const d=D(); document.getElementById('serviziCount').textContent=d.servizi.length+' servizi';
+  document.getElementById('serviziList').innerHTML=d.servizi.map((s,i)=>`
+    <div class="admin-item"><div class="admin-item-text"><strong>${s.name}</strong><em>${s.desc.substring(0,60)}…</em></div>
+    <div class="admin-item-actions"><button class="admin-btn-sm del" onclick="delServizio(${i})">✕</button></div></div>`).join('');
+}
+window.addServizio=function(){
+  const name=document.getElementById('newServizioName').value.trim(),desc=document.getElementById('newServizioDesc').value.trim();
+  if(!name||!desc) return; const d=D(); d.servizi.push({name,desc}); S(d);
+  document.getElementById('newServizioName').value=''; document.getElementById('newServizioDesc').value='';
+  renderAdminServizi(); renderAll(); showSaved('s_servizio');
+};
+window.delServizio=function(i){ const d=D(); d.servizi.splice(i,1); S(d); renderAdminServizi(); renderAll(); };
+
+// STATS
+function refreshStats(){
+  const d=D();
+  document.getElementById('statEmail').textContent=d.clicks.email||0;
+  document.getElementById('statForm').textContent=d.clicks.form||0;
+  document.getElementById('statWa').textContent=d.clicks.whatsapp||0;
+  document.getElementById('statIg').textContent=d.clicks.instagram||0;
+  document.getElementById('statPillole').textContent=d.pillole.length;
+  document.getElementById('statQuote').textContent=d.quotes.length;
+}
+window.resetStats=function(){ if(!confirm('Azzerare?')) return; const d=D(); d.clicks={email:0,form:0,whatsapp:0,instagram:0}; S(d); refreshStats(); };
+
+// GA
+window.saveGa=function(){
+  const code=document.getElementById('gaCode').value.trim(); const d=D(); d.gaCode=code; S(d);
+  if(code){ injectGA(code); document.getElementById('gaStatus').textContent='✓ Attivo: '+code; }
+  showSaved('s_ga');
+};
+
+// PASSWORD
+window.changePassword=function(){
+  const np=document.getElementById('newPassword').value,cp=document.getElementById('confirmPassword').value;
+  if(!np||np!==cp) return alert('Le password non coincidono.');
+  if(np.length<6) return alert('Minimo 6 caratteri.');
+  const d=D(); d.password=np; S(d);
+  document.getElementById('newPassword').value=''; document.getElementById('confirmPassword').value='';
+  showSaved('s_pw');
+};
+
+// BACKUP
+window.exportData=function(){
+  const blob=new Blob([JSON.stringify(D(),null,2)],{type:'application/json'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='malamente-backup-'+new Date().toISOString().split('T')[0]+'.json'; a.click();
+};
+window.handleImport=function(e){
+  const file=e.target.files[0]; if(!file) return;
+  const reader=new FileReader();
+  reader.onload=ev=>{ try{ S(JSON.parse(ev.target.result)); renderAll(); renderQuotes(); loadAdmin(); alert('Backup importato!'); }catch{ alert('File non valido.'); } };
+  reader.readAsText(file);
+};
+
+// INIT
+renderAll();
 renderQuotes();
-renderPillole();
-renderServizi();
 </script>
 </body>
 </html>
