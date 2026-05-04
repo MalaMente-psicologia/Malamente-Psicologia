@@ -1,0 +1,1354 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Malamente Psicologia — Dott.ssa Federica Dolmetti</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --beige: #e8dfd0;
+    --beige-dark: #d4c9b5;
+    --teal: #4a7c7e;
+    --teal-dark: #3a6163;
+    --teal-light: #6a9c9e;
+    --brown: #8b7355;
+    --text: #2c2420;
+    --text-light: #6b5d52;
+    --white: #fdfaf5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--beige-dark);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--teal); }
+
+  nav ul {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  nav a {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  nav a:hover { color: var(--teal); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 4rem 5rem 6rem;
+  }
+
+  .hero-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--teal);
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 4vw, 4.2rem);
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--teal);
+  }
+
+  .hero-sub {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    max-width: 420px;
+    margin-bottom: 3rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--teal);
+    color: var(--white);
+    padding: 1rem 2.5rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.3s, transform 0.2s;
+    cursor: pointer;
+    border: none;
+    font-family: 'Jost', sans-serif;
+  }
+
+  .btn-primary:hover {
+    background: var(--teal-dark);
+    transform: translateY(-1px);
+  }
+
+  .btn-outline {
+    display: inline-block;
+    border: 1px solid var(--teal);
+    color: var(--teal);
+    padding: 0.9rem 2.2rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s;
+    cursor: pointer;
+    background: transparent;
+    font-family: 'Jost', sans-serif;
+    margin-left: 1rem;
+  }
+
+  .btn-outline:hover {
+    background: var(--teal);
+    color: var(--white);
+  }
+
+  .hero-visual {
+    background: var(--beige);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hero-visual-inner {
+    text-align: center;
+    padding: 3rem;
+  }
+
+  .quote-rotating {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.6;
+    max-width: 360px;
+    margin: 0 auto 1.5rem;
+    min-height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.6s ease;
+  }
+
+  .quote-author {
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    transition: opacity 0.6s ease;
+  }
+
+  .quote-dots {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+
+  .quote-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--beige-dark);
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .quote-dot.active { background: var(--teal); }
+
+  .hero-deco {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 1px solid var(--beige-dark);
+    top: -50px;
+    right: -50px;
+    opacity: 0.5;
+  }
+
+  .hero-deco-2 {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 1px solid var(--beige-dark);
+    bottom: 30px;
+    left: 30px;
+    opacity: 0.4;
+  }
+
+  /* ─── SECTION COMMON ─── */
+  section {
+    padding: 6rem 6rem;
+  }
+
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  .section-label::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: var(--teal);
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ─── CHI SONO ─── */
+  #chi-sono {
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .chi-sono-text p {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    font-weight: 300;
+    line-height: 1.9;
+  }
+
+  .competenze {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .competenza {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.2rem;
+    border-left: 2px solid var(--teal-light);
+    background: var(--cream);
+  }
+
+  .competenza-icon {
+    color: var(--teal);
+    font-size: 1.2rem;
+    margin-top: 0.1rem;
+  }
+
+  .competenza-text strong {
+    display: block;
+    font-size: 0.88rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.2rem;
+    font-weight: 500;
+  }
+
+  .competenza-text span {
+    font-size: 0.82rem;
+    color: var(--text-light);
+  }
+
+  /* ─── SERVIZI ─── */
+  #servizi {
+    background: var(--cream);
+  }
+
+  .servizi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .servizio-card {
+    background: var(--white);
+    padding: 2.5rem;
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .servizio-card:hover {
+    border-color: var(--teal);
+    transform: translateY(-4px);
+  }
+
+  .servizio-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--beige-dark);
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .servizio-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+
+  .servizio-card p {
+    font-size: 0.88rem;
+    color: var(--text-light);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  /* ─── PRENOTAZIONE ─── */
+  #prenotazione {
+    background: var(--teal);
+    color: var(--white);
+    text-align: center;
+  }
+
+  #prenotazione .section-label { color: var(--beige); }
+  #prenotazione .section-label::before { background: var(--beige); }
+  #prenotazione .section-title { color: var(--white); }
+
+  #prenotazione p {
+    color: rgba(255,255,255,0.8);
+    max-width: 520px;
+    margin: 0 auto 3rem;
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .prenotazione-box {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 3rem;
+    text-align: left;
+  }
+
+  .prenotazione-box h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+    color: var(--white);
+  }
+
+  .prenotazione-box p {
+    font-size: 0.85rem;
+    margin-bottom: 2rem;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .prenotazione-email-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255,255,255,0.15);
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 2rem;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.9rem;
+    letter-spacing: 0.05em;
+    border: 1px solid rgba(255,255,255,0.25);
+    transition: background 0.3s;
+  }
+
+  .prenotazione-email-link:hover { background: rgba(255,255,255,0.25); }
+
+  .prenotazione-email-link svg {
+    flex-shrink: 0;
+    opacity: 0.8;
+  }
+
+  .prenotazione-note {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.7;
+    text-align: center;
+  }
+
+  /* ─── PILLOLE / ARTICOLI ─── */
+  #pillole {
+    background: var(--white);
+  }
+
+  .pillole-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .pillola-card {
+    background: var(--cream);
+    padding: 2rem;
+    border-top: 2px solid var(--beige-dark);
+    transition: border-color 0.3s;
+    position: relative;
+  }
+
+  .pillola-card:hover { border-color: var(--teal); }
+
+  .pillola-tag {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .pillola-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .pillola-card p {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+
+  .pillola-date {
+    font-size: 0.72rem;
+    color: var(--brown);
+    margin-top: 1.2rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--text);
+    color: rgba(255,255,255,0.6);
+    padding: 3rem 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  footer .logo-footer {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    color: var(--cream);
+    font-weight: 300;
+  }
+
+  footer p { font-size: 0.78rem; }
+
+  footer a {
+    color: var(--teal-light);
+    text-decoration: none;
+    font-size: 0.78rem;
+  }
+
+  footer a:hover { color: var(--teal); }
+
+  /* ─── ADMIN PANEL ─── */
+  #admin-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+  }
+
+  #admin-panel {
+    position: fixed;
+    right: 0; top: 0; bottom: 0;
+    width: min(600px, 100vw);
+    background: var(--white);
+    z-index: 1001;
+    overflow-y: auto;
+    box-shadow: -8px 0 40px rgba(0,0,0,0.15);
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  #admin-panel.open { transform: translateX(0); }
+
+  .admin-header {
+    background: var(--teal);
+    color: var(--white);
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .admin-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+  }
+
+  .admin-header small {
+    display: block;
+    font-size: 0.72rem;
+    opacity: 0.7;
+    letter-spacing: 0.1em;
+    margin-top: 0.2rem;
+  }
+
+  .admin-close {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.3rem;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+
+  .admin-close:hover { opacity: 1; }
+
+  .admin-body { padding: 2rem; }
+
+  .admin-section {
+    margin-bottom: 2.5rem;
+    border: 1px solid var(--beige-dark);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .admin-section-header {
+    background: var(--beige);
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .admin-section-header h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  .admin-section-header span {
+    font-size: 0.8rem;
+    color: var(--text-light);
+  }
+
+  .admin-section-body {
+    padding: 1.5rem;
+    background: var(--white);
+  }
+
+  .admin-field { margin-bottom: 1.2rem; }
+
+  .admin-field label {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    margin-bottom: 0.4rem;
+  }
+
+  .admin-field input,
+  .admin-field textarea,
+  .admin-field select {
+    width: 100%;
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--beige-dark);
+    background: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.88rem;
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .admin-field input:focus,
+  .admin-field textarea:focus {
+    border-color: var(--teal);
+    background: var(--white);
+  }
+
+  .admin-field textarea { min-height: 80px; resize: vertical; }
+
+  .admin-btn {
+    background: var(--teal);
+    color: var(--white);
+    border: none;
+    padding: 0.7rem 1.5rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+
+  .admin-btn:hover { background: var(--teal-dark); }
+
+  .admin-btn-danger {
+    background: #c0392b;
+    margin-left: 0.5rem;
+  }
+
+  .admin-btn-danger:hover { background: #a93226; }
+
+  .admin-item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .admin-item {
+    background: var(--cream);
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--beige-dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .admin-item-text { flex: 1; font-size: 0.85rem; line-height: 1.5; }
+  .admin-item-text strong { display: block; font-size: 0.88rem; }
+  .admin-item-text em { font-size: 0.78rem; color: var(--teal); font-style: normal; }
+
+  .admin-item-actions { display: flex; gap: 0.3rem; flex-shrink: 0; }
+
+  .admin-btn-sm {
+    background: none;
+    border: 1px solid var(--beige-dark);
+    padding: 0.3rem 0.7rem;
+    font-size: 0.72rem;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    color: var(--text-light);
+    transition: all 0.2s;
+  }
+
+  .admin-btn-sm:hover { border-color: var(--teal); color: var(--teal); }
+  .admin-btn-sm.del:hover { border-color: #c0392b; color: #c0392b; }
+
+  .admin-divider {
+    border: none;
+    border-top: 1px dashed var(--beige-dark);
+    margin: 1.2rem 0;
+  }
+
+  .admin-login {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+  }
+
+  .admin-login h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+
+  .admin-saved-msg {
+    background: #d4edda;
+    color: #155724;
+    padding: 0.6rem 1rem;
+    font-size: 0.82rem;
+    margin-top: 0.5rem;
+    display: none;
+  }
+
+  /* Admin trigger button */
+  .admin-trigger {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--teal);
+    color: var(--white);
+    border: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(74,124,126,0.4);
+    transition: transform 0.2s, background 0.2s;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .admin-trigger:hover {
+    background: var(--teal-dark);
+    transform: scale(1.1);
+  }
+
+  .admin-trigger-tooltip {
+    position: fixed;
+    bottom: 2rem;
+    right: 5rem;
+    background: var(--text);
+    color: var(--white);
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+  }
+
+  .admin-trigger:hover + .admin-trigger-tooltip { opacity: 1; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    nav ul { gap: 1.5rem; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-visual { min-height: 320px; }
+    .hero-text { padding: 4rem 2rem 3rem; }
+    section { padding: 4rem 2rem; }
+    #chi-sono { grid-template-columns: 1fr; gap: 3rem; }
+    .servizi-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; padding: 2rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Malamente <span>Psicologia</span></a>
+  <ul>
+    <li><a href="#chi-sono">Chi sono</a></li>
+    <li><a href="#servizi">Servizi</a></li>
+    <li><a href="#pillole">Pillole</a></li>
+    <li><a href="#prenotazione">Prenota</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <div class="hero-tag">Psicologia clinica · Psicoterapia</div>
+    <h1>Un luogo per <em>stare</em> con ciò che sei</h1>
+    <p class="hero-sub">Benvenuta. Questo è uno spazio pensato per chi vuole capirsi meglio, attraversare momenti difficili e costruire qualcosa di più autentico per sé.</p>
+    <div>
+      <a href="#prenotazione" class="btn-primary">Prenota un colloquio</a>
+      <a href="#chi-sono" class="btn-outline">Scopri di più</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-deco"></div>
+    <div class="hero-deco-2"></div>
+    <div class="hero-visual-inner">
+      <div class="quote-rotating" id="quoteText"></div>
+      <div class="quote-author" id="quoteAuthor"></div>
+      <div class="quote-dots" id="quoteDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CHI SONO -->
+<section id="chi-sono">
+  <div class="chi-sono-text">
+    <div class="section-label">Chi sono</div>
+    <h2 class="section-title">Dott.ssa Federica Dolmetti</h2>
+    <p>Sono una psicologa e psicoterapeuta in formazione sistemico-relazionale. Lavoro con adulti che si trovano in momenti di cambiamento, difficoltà relazionale, o semplicemente con il desiderio di capirsi meglio.</p>
+    <p>Il mio approccio integra la prospettiva sistemico-relazionale con strumenti dalla psicologia clinica, cercando sempre di costruire insieme al paziente uno spazio autentico e non giudicante.</p>
+  </div>
+  <div class="competenze">
+    <div class="section-label">Ambiti di lavoro</div>
+    <div class="competenza">
+      <div class="competenza-icon">◆</div>
+      <div class="competenza-text">
+        <strong>Psicoterapia individuale</strong>
+        <span>Percorsi personalizzati per adulti e giovani adulti</span>
+      </div>
+    </div>
+    <div class="competenza">
+      <div class="competenza-icon">◆</div>
+      <div class="competenza-text">
+        <strong>Consulenza psicologica</strong>
+        <span>Spazio di ascolto e orientamento clinico</span>
+      </div>
+    </div>
+    <div class="competenza">
+      <div class="competenza-icon">◆</div>
+      <div class="competenza-text">
+        <strong>Neurodivergenza e inclusione</strong>
+        <span>Esperienza con adulti autistici e neurodivergenti</span>
+      </div>
+    </div>
+    <div class="competenza">
+      <div class="competenza-icon">◆</div>
+      <div class="competenza-text">
+        <strong>Approccio sistemico-relazionale</strong>
+        <span>Formazione specialistica in psicoterapia</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIZI -->
+<section id="servizi">
+  <div class="section-label">Cosa offro</div>
+  <h2 class="section-title">Servizi</h2>
+  <div class="servizi-grid" id="serviziGrid">
+    <!-- populated by JS -->
+  </div>
+</section>
+
+<!-- PRENOTAZIONE -->
+<section id="prenotazione">
+  <div class="section-label">Inizia da qui</div>
+  <h2 class="section-title">Prenota un colloquio</h2>
+  <p>Il primo passo è il più importante. Scrivimi per fissare un colloquio conoscitivo — senza impegno, senza fretta.</p>
+  <div class="prenotazione-box">
+    <h3>Contattami via email</h3>
+    <p>Scrivi qualche riga su di te e su come posso aiutarti. Ti rispondo entro 48 ore.</p>
+    <a href="mailto:malamente.psicologia@gmail.com?subject=Richiesta%20colloquio&body=Gentile%20Dott.ssa%20Dolmetti%2C%0A%0Ami%20chiamo%20...%20e%20vorrei%20richiedere%20un%20colloquio%20conoscitivo.%0A%0AGrazie" class="prenotazione-email-link">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <rect x="2" y="4" width="20" height="16" rx="2"/>
+        <path d="M2 7l10 7 10-7"/>
+      </svg>
+      malamente.psicologia@gmail.com
+    </a>
+    <p class="prenotazione-note">Il colloquio si svolge in presenza a Napoli o online tramite piattaforma sicura.</p>
+  </div>
+</section>
+
+<!-- PILLOLE -->
+<section id="pillole">
+  <div class="section-label">Riflessioni & risorse</div>
+  <h2 class="section-title">Pillole di psicologia</h2>
+  <div class="pillole-grid" id="pilloleGrid">
+    <!-- populated by JS -->
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="logo-footer">Malamente Psicologia</div>
+    <p style="margin-top:0.3rem">Dott.ssa Federica Dolmetti — Psicologa</p>
+  </div>
+  <div style="text-align:right">
+    <a href="https://instagram.com/mala.mente.psicologa" target="_blank">@mala.mente.psicologa</a>
+    <p style="margin-top:0.3rem">© 2025 Malamente Psicologia</p>
+  </div>
+</footer>
+
+<!-- ADMIN TRIGGER -->
+<button class="admin-trigger" onclick="openAdmin()" title="Admin">⚙</button>
+<div class="admin-trigger-tooltip">Pannello admin</div>
+
+<!-- ADMIN OVERLAY -->
+<div id="admin-overlay" onclick="closeAdmin()"></div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel">
+  <div class="admin-header">
+    <div>
+      <h2>Pannello Admin</h2>
+      <small>Malamente Psicologia</small>
+    </div>
+    <button class="admin-close" onclick="closeAdmin()">✕</button>
+  </div>
+
+  <!-- LOGIN -->
+  <div id="adminLogin" class="admin-login">
+    <h3>Accesso amministratore</h3>
+    <div class="admin-field">
+      <label>Password</label>
+      <input type="password" id="adminPasswordInput" placeholder="Inserisci la password" onkeydown="if(event.key==='Enter') checkAdminPassword()">
+    </div>
+    <button class="admin-btn" onclick="checkAdminPassword()">Accedi</button>
+    <p style="font-size:0.78rem;color:var(--text-light)">Password predefinita: <strong>malamente2025</strong><br>Cambiala nel pannello dopo il primo accesso.</p>
+  </div>
+
+  <!-- CONTENT (hidden until login) -->
+  <div id="adminContent" style="display:none">
+    <div class="admin-body">
+
+      <!-- CITAZIONI -->
+      <div class="admin-section">
+        <div class="admin-section-header">
+          <h3>✦ Citazioni rotanti</h3>
+          <span id="quoteCount">0 citazioni</span>
+        </div>
+        <div class="admin-section-body">
+          <div class="admin-item-list" id="quoteList"></div>
+          <hr class="admin-divider">
+          <div class="admin-field">
+            <label>Testo citazione</label>
+            <textarea id="newQuoteText" placeholder="«Il coraggio è la grazia sotto pressione.»"></textarea>
+          </div>
+          <div class="admin-field">
+            <label>Autore</label>
+            <input type="text" id="newQuoteAuthor" placeholder="Ernest Hemingway">
+          </div>
+          <button class="admin-btn" onclick="addQuote()">+ Aggiungi citazione</button>
+          <div class="admin-saved-msg" id="quoteSaved">Citazione salvata ✓</div>
+        </div>
+      </div>
+
+      <!-- PILLOLE -->
+      <div class="admin-section">
+        <div class="admin-section-header">
+          <h3>✦ Pillole & articoli</h3>
+          <span id="pilloleCount">0 pillole</span>
+        </div>
+        <div class="admin-section-body">
+          <div class="admin-item-list" id="pilloleList"></div>
+          <hr class="admin-divider">
+          <div class="admin-field">
+            <label>Titolo</label>
+            <input type="text" id="newPillolaTitle" placeholder="Il peso dell'ansia da prestazione">
+          </div>
+          <div class="admin-field">
+            <label>Tag / categoria</label>
+            <input type="text" id="newPillolaTag" placeholder="Ansia · Benessere">
+          </div>
+          <div class="admin-field">
+            <label>Testo</label>
+            <textarea id="newPillolaText" placeholder="Descrivi la pillola..."></textarea>
+          </div>
+          <button class="admin-btn" onclick="addPillola()">+ Pubblica pillola</button>
+          <div class="admin-saved-msg" id="pillolaSaved">Pillola pubblicata ✓</div>
+        </div>
+      </div>
+
+      <!-- SERVIZI -->
+      <div class="admin-section">
+        <div class="admin-section-header">
+          <h3>✦ Servizi</h3>
+          <span>Modifica le card</span>
+        </div>
+        <div class="admin-section-body">
+          <div class="admin-item-list" id="serviziList"></div>
+          <hr class="admin-divider">
+          <div class="admin-field">
+            <label>Nome servizio</label>
+            <input type="text" id="newServizioName" placeholder="Percorso di psicoterapia">
+          </div>
+          <div class="admin-field">
+            <label>Descrizione</label>
+            <textarea id="newServizioDesc" placeholder="Descrizione del servizio..."></textarea>
+          </div>
+          <button class="admin-btn" onclick="addServizio()">+ Aggiungi servizio</button>
+        </div>
+      </div>
+
+      <!-- PASSWORD -->
+      <div class="admin-section">
+        <div class="admin-section-header">
+          <h3>✦ Sicurezza</h3>
+          <span>Cambia password</span>
+        </div>
+        <div class="admin-section-body">
+          <div class="admin-field">
+            <label>Nuova password</label>
+            <input type="password" id="newPassword" placeholder="Nuova password">
+          </div>
+          <div class="admin-field">
+            <label>Conferma password</label>
+            <input type="password" id="confirmPassword" placeholder="Ripeti la password">
+          </div>
+          <button class="admin-btn" onclick="changePassword()">Salva nuova password</button>
+          <div class="admin-saved-msg" id="pwSaved">Password aggiornata ✓</div>
+        </div>
+      </div>
+
+      <button class="admin-btn admin-btn-danger" onclick="adminLogout()" style="width:100%;margin-top:1rem">Esci dall'admin</button>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── DATA STORE (localStorage) ───
+const STORAGE_KEY = 'malamente_data';
+const DEFAULT_PW = 'malamente2025';
+
+function getData() {
+  const raw = localStorage.getItem(STORAGE_KEY);
+  if (raw) return JSON.parse(raw);
+  return {
+    password: DEFAULT_PW,
+    quotes: [
+      { text: 'Non esiste un vento favorevole per il marinaio che non sa dove andare.', author: 'Seneca' },
+      { text: 'La vita non è quella vissuta, ma quella ricordata e come viene ricordata.', author: 'Gabriel García Márquez' },
+      { text: 'Conosci te stesso.', author: 'Socrate' },
+    ],
+    pillole: [
+      { title: 'Cosa si intende per ansia?', tag: 'Ansia · Benessere', text: 'L\'ansia è una risposta normale dell\'organismo allo stress. Diventa un problema quando persiste e interferisce con la quotidianità. Riconoscerla è il primo passo.', date: '2025-04-01' },
+      { title: 'Il valore della vulnerabilità', tag: 'Relazioni · Crescita', text: 'Mostrarsi vulnerabili non è debolezza: è il modo in cui costruiamo connessioni autentiche con gli altri e con noi stessi.', date: '2025-03-20' },
+    ],
+    servizi: [
+      { name: 'Psicoterapia individuale', desc: 'Percorsi di psicoterapia personalizzati per adulti e giovani adulti, con approccio sistemico-relazionale.' },
+      { name: 'Consulenza psicologica', desc: 'Uno o più colloqui di orientamento clinico, utili per capire come funzioni e cosa potrebbe aiutarti.' },
+      { name: 'Supporto online', desc: 'Sedute a distanza tramite piattaforma sicura, per chi non può o non vuole spostarsi.' },
+    ]
+  };
+}
+
+function saveData(data) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+// ─── QUOTES ───
+let currentQuote = 0;
+let quoteInterval;
+
+function renderQuotes() {
+  const data = getData();
+  const quotes = data.quotes;
+  if (!quotes.length) return;
+
+  const textEl = document.getElementById('quoteText');
+  const authorEl = document.getElementById('quoteAuthor');
+  const dotsEl = document.getElementById('quoteDots');
+
+  function show(i) {
+    textEl.style.opacity = 0;
+    authorEl.style.opacity = 0;
+    setTimeout(() => {
+      textEl.textContent = '«' + quotes[i].text + '»';
+      authorEl.textContent = '— ' + quotes[i].author;
+      textEl.style.opacity = 1;
+      authorEl.style.opacity = 1;
+      document.querySelectorAll('.quote-dot').forEach((d,j) => d.classList.toggle('active', j===i));
+    }, 300);
+    currentQuote = i;
+  }
+
+  dotsEl.innerHTML = quotes.map((_, i) => `<div class="quote-dot${i===0?' active':''}" onclick="showQuote(${i})"></div>`).join('');
+  show(0);
+
+  clearInterval(quoteInterval);
+  quoteInterval = setInterval(() => show((currentQuote + 1) % quotes.length), 5000);
+}
+
+window.showQuote = function(i) {
+  clearInterval(quoteInterval);
+  const data = getData();
+  const quotes = data.quotes;
+  const textEl = document.getElementById('quoteText');
+  const authorEl = document.getElementById('quoteAuthor');
+  textEl.style.opacity = 0;
+  authorEl.style.opacity = 0;
+  setTimeout(() => {
+    textEl.textContent = '«' + quotes[i].text + '»';
+    authorEl.textContent = '— ' + quotes[i].author;
+    textEl.style.opacity = 1;
+    authorEl.style.opacity = 1;
+    document.querySelectorAll('.quote-dot').forEach((d,j) => d.classList.toggle('active', j===i));
+    currentQuote = i;
+  }, 300);
+  quoteInterval = setInterval(() => showQuote((currentQuote+1)%quotes.length), 5000);
+};
+
+// ─── PILLOLE ───
+function renderPillole() {
+  const data = getData();
+  const grid = document.getElementById('pilloleGrid');
+  grid.innerHTML = data.pillole.map((p, i) => `
+    <div class="pillola-card">
+      <span class="pillola-tag">${p.tag}</span>
+      <h3>${p.title}</h3>
+      <p>${p.text}</p>
+      <div class="pillola-date">${formatDate(p.date)}</div>
+    </div>
+  `).join('') || '<p style="color:var(--text-light);font-size:0.88rem">Nessuna pillola ancora. Aggiungile dal pannello admin.</p>';
+}
+
+function formatDate(str) {
+  const d = new Date(str);
+  return d.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric' });
+}
+
+// ─── SERVIZI ───
+function renderServizi() {
+  const data = getData();
+  const grid = document.getElementById('serviziGrid');
+  grid.innerHTML = data.servizi.map((s, i) => `
+    <div class="servizio-card">
+      <div class="servizio-num">0${i+1}</div>
+      <h3>${s.name}</h3>
+      <p>${s.desc}</p>
+    </div>
+  `).join('');
+}
+
+// ─── ADMIN ───
+window.openAdmin = function() {
+  document.getElementById('admin-overlay').style.display = 'block';
+  setTimeout(() => document.getElementById('admin-panel').classList.add('open'), 10);
+};
+
+window.closeAdmin = function() {
+  document.getElementById('admin-panel').classList.remove('open');
+  setTimeout(() => document.getElementById('admin-overlay').style.display = 'none', 400);
+};
+
+window.checkAdminPassword = function() {
+  const data = getData();
+  const input = document.getElementById('adminPasswordInput').value;
+  if (input === data.password) {
+    document.getElementById('adminLogin').style.display = 'none';
+    document.getElementById('adminContent').style.display = 'block';
+    renderAdminQuotes();
+    renderAdminPillole();
+    renderAdminServizi();
+  } else {
+    document.getElementById('adminPasswordInput').style.borderColor = '#c0392b';
+    document.getElementById('adminPasswordInput').value = '';
+    document.getElementById('adminPasswordInput').placeholder = 'Password errata. Riprova.';
+  }
+};
+
+window.adminLogout = function() {
+  document.getElementById('adminLogin').style.display = 'flex';
+  document.getElementById('adminContent').style.display = 'none';
+  document.getElementById('adminPasswordInput').value = '';
+  closeAdmin();
+};
+
+// Admin: quotes
+function renderAdminQuotes() {
+  const data = getData();
+  const list = document.getElementById('quoteList');
+  document.getElementById('quoteCount').textContent = data.quotes.length + ' citazioni';
+  list.innerHTML = data.quotes.map((q, i) => `
+    <div class="admin-item">
+      <div class="admin-item-text">
+        <strong>«${q.text.substring(0,60)}${q.text.length>60?'…':''}»</strong>
+        <em>— ${q.author}</em>
+      </div>
+      <div class="admin-item-actions">
+        <button class="admin-btn-sm del" onclick="deleteQuote(${i})">✕</button>
+      </div>
+    </div>
+  `).join('') || '<p style="font-size:0.82rem;color:var(--text-light)">Nessuna citazione.</p>';
+}
+
+window.addQuote = function() {
+  const text = document.getElementById('newQuoteText').value.trim();
+  const author = document.getElementById('newQuoteAuthor').value.trim();
+  if (!text || !author) return;
+  const data = getData();
+  data.quotes.push({ text, author });
+  saveData(data);
+  document.getElementById('newQuoteText').value = '';
+  document.getElementById('newQuoteAuthor').value = '';
+  renderAdminQuotes();
+  renderQuotes();
+  showSaved('quoteSaved');
+};
+
+window.deleteQuote = function(i) {
+  const data = getData();
+  data.quotes.splice(i, 1);
+  saveData(data);
+  renderAdminQuotes();
+  renderQuotes();
+};
+
+// Admin: pillole
+function renderAdminPillole() {
+  const data = getData();
+  const list = document.getElementById('pilloleList');
+  document.getElementById('pilloleCount').textContent = data.pillole.length + ' pillole';
+  list.innerHTML = data.pillole.map((p, i) => `
+    <div class="admin-item">
+      <div class="admin-item-text">
+        <strong>${p.title}</strong>
+        <em>${p.tag}</em>
+      </div>
+      <div class="admin-item-actions">
+        <button class="admin-btn-sm del" onclick="deletePillola(${i})">✕</button>
+      </div>
+    </div>
+  `).join('') || '<p style="font-size:0.82rem;color:var(--text-light)">Nessuna pillola.</p>';
+}
+
+window.addPillola = function() {
+  const title = document.getElementById('newPillolaTitle').value.trim();
+  const tag = document.getElementById('newPillolaTag').value.trim();
+  const text = document.getElementById('newPillolaText').value.trim();
+  if (!title || !text) return;
+  const data = getData();
+  data.pillole.unshift({ title, tag: tag || 'Psicologia', text, date: new Date().toISOString().split('T')[0] });
+  saveData(data);
+  document.getElementById('newPillolaTitle').value = '';
+  document.getElementById('newPillolaTag').value = '';
+  document.getElementById('newPillolaText').value = '';
+  renderAdminPillole();
+  renderPillole();
+  showSaved('pillolaSaved');
+};
+
+window.deletePillola = function(i) {
+  const data = getData();
+  data.pillole.splice(i, 1);
+  saveData(data);
+  renderAdminPillole();
+  renderPillole();
+};
+
+// Admin: servizi
+function renderAdminServizi() {
+  const data = getData();
+  const list = document.getElementById('serviziList');
+  list.innerHTML = data.servizi.map((s, i) => `
+    <div class="admin-item">
+      <div class="admin-item-text">
+        <strong>${s.name}</strong>
+        <em>${s.desc.substring(0,60)}…</em>
+      </div>
+      <div class="admin-item-actions">
+        <button class="admin-btn-sm del" onclick="deleteServizio(${i})">✕</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+window.addServizio = function() {
+  const name = document.getElementById('newServizioName').value.trim();
+  const desc = document.getElementById('newServizioDesc').value.trim();
+  if (!name || !desc) return;
+  const data = getData();
+  data.servizi.push({ name, desc });
+  saveData(data);
+  document.getElementById('newServizioName').value = '';
+  document.getElementById('newServizioDesc').value = '';
+  renderAdminServizi();
+  renderServizi();
+};
+
+window.deleteServizio = function(i) {
+  const data = getData();
+  data.servizi.splice(i, 1);
+  saveData(data);
+  renderAdminServizi();
+  renderServizi();
+};
+
+// Admin: password
+window.changePassword = function() {
+  const np = document.getElementById('newPassword').value;
+  const cp = document.getElementById('confirmPassword').value;
+  if (!np || np !== cp) return alert('Le password non coincidono.');
+  if (np.length < 6) return alert('Password troppo corta (min. 6 caratteri).');
+  const data = getData();
+  data.password = np;
+  saveData(data);
+  document.getElementById('newPassword').value = '';
+  document.getElementById('confirmPassword').value = '';
+  showSaved('pwSaved');
+};
+
+function showSaved(id) {
+  const el = document.getElementById(id);
+  el.style.display = 'block';
+  setTimeout(() => el.style.display = 'none', 2500);
+}
+
+// ─── INIT ───
+renderQuotes();
+renderPillole();
+renderServizi();
+</script>
+</body>
+</html>
