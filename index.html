@@ -116,6 +116,11 @@
   .footer-social a:hover { color:var(--white); }
 
   /* ═══════════ ADMIN ═══════════ */
+  .admin-export-box { border:1px dashed var(--teal-light); border-radius:4px; padding:1.2rem; margin-bottom:1.2rem; background:rgba(74,124,126,0.04); }
+  .admin-export-box p { font-size:0.78rem; color:var(--text-light); line-height:1.7; margin-bottom:0.8rem; }
+  .admin-btn-export { width:100%; background:var(--teal-dark); color:var(--white); border:none; padding:0.75rem 1.3rem; font-family:'Jost',sans-serif; font-size:0.73rem; letter-spacing:0.1em; text-transform:uppercase; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:0.5rem; transition:background 0.2s; border-left:3px solid var(--teal-light); }
+  .admin-btn-export:hover { background:#2d4e50; }
+  .admin-saved-export { background:#dff0f5; color:#1a5276; padding:0.45rem 0.8rem; font-size:0.78rem; margin-top:0.6rem; display:none; }
   .admin-trigger { position:fixed; bottom:2rem; right:2rem; background:var(--teal); color:var(--white); border:none; width:50px; height:50px; border-radius:50%; font-size:1.1rem; cursor:pointer; box-shadow:0 4px 20px rgba(74,124,126,0.4); transition:transform 0.2s,background 0.2s; z-index:200; display:flex; align-items:center; justify-content:center; }
   .admin-trigger:hover { background:var(--teal-dark); transform:scale(1.1); }
   #admin-overlay { display:none; position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,0.45); backdrop-filter:blur(4px); }
@@ -239,7 +244,8 @@
     <div id="chiSonoBio"></div>
   </div>
   <div>
-  
+    <div class="competenze" id="competenzeList"></div>
+  </div>
 </section>
 
 <section id="servizi">
@@ -325,7 +331,6 @@
       <input type="password" id="adminPasswordInput" placeholder="Inserisci la password" onkeydown="if(event.key==='Enter')checkAdminPassword()">
     </div>
     <button class="admin-btn" onclick="checkAdminPassword()">Accedi</button>
-    
   </div>
 
   <!-- CONTENUTO -->
@@ -358,13 +363,6 @@
             <div class="admin-field"><label>Nome visualizzato</label><input type="text" id="t_chiSonoTitolo"></div>
             <div class="admin-field"><label>Primo paragrafo</label><textarea id="t_bio1"></textarea></div>
             <div class="admin-field"><label>Secondo paragrafo</label><textarea id="t_bio2"></textarea></div>
-            <div class="admin-field"><label>URL foto profilo</label><input type="text" id="t_fotoUrl" placeholder="https://raw.githubusercontent.com/tuonome/malamente-psicologia/main/foto.jpg"></div>
-            <div class="admin-info">
-              <strong>Come aggiungere la tua foto</strong>
-              1. Carica <strong>foto.jpg</strong> nella repo GitHub → Add file → Upload<br>
-              2. Clicca sul file → pulsante <strong>Raw</strong> → copia l'URL dalla barra del browser<br>
-              3. Incollalo qui sopra → Salva
-            </div>
             <div class="admin-btn-row"><button class="admin-btn" onclick="saveChiSono()">Salva</button></div>
             <div class="admin-saved" id="s_chiSono">Salvato ✓</div>
           </div>
@@ -528,6 +526,12 @@
           </div>
         </div>
 
+        <div class="admin-export-box">
+          <p>📌 Le modifiche qui vengono salvate solo nel tuo browser. Per renderle permanenti su GitHub, scarica l'HTML aggiornato e fai push del file.</p>
+          <button class="admin-btn-export" onclick="generateHTML()">📥 Genera HTML aggiornato</button>
+          <div class="admin-saved-export" id="s_export">✓ File scaricato — ora fai push su GitHub!</div>
+        </div>
+
         <button class="admin-btn admin-btn-danger" onclick="adminLogout()" style="width:100%;margin-top:1rem">Esci dall'admin</button>
       </div>
 
@@ -541,39 +545,39 @@ const KEY = 'malamente_v2';
 function D() {
   const r = localStorage.getItem(KEY);
   if (r) return JSON.parse(r);
-  return {
-    password:'malamente2025', gaCode:'', clicks:{email:0,form:0},
-    testi:{
-      heroTag:'Psicologia clinica · Psicoterapia',
-      heroTitle:'Un luogo per [em]stare[/em] con ciò che sei',
-      heroSub:'Benvenuta. Questo è uno spazio pensato per chi vuole capirsi meglio, attraversare momenti difficili e costruire qualcosa di più autentico per sé.',
-      chiSonoTitolo:'Dott.ssa Federica Dolmetti',
-      bio1:"Sono una psicologa e psicoterapeuta in formazione sistemico-relazionale. Lavoro con adulti che si trovano in momenti di cambiamento, difficoltà relazionale, o semplicemente con il desiderio di capirsi meglio.",
-      bio2:"Il mio approccio integra la prospettiva sistemico-relazionale con strumenti dalla psicologia clinica, cercando sempre di costruire insieme al paziente uno spazio autentico e non giudicante.",
-      fotoUrl:'', prenotazioneTesto:"Il primo passo è il più importante. Scrivimi per fissare un colloquio conoscitivo — senza impegno, senza fretta.",
-      formLink:'', footerSub:'Dott.ssa Federica Dolmetti — Psicologa', igLink:'https://instagram.com/mala.mente.psicologa', waNumber:'39'
+  return {/* DEFAULT_DATA_START */
+    "password":"malamente2025","gaCode":"","clicks":{"email":0,"form":0,"whatsapp":0,"instagram":0},
+    "testi":{
+      "heroTag":"Psicologia clinica · Psicoterapia",
+      "heroTitle":"Un luogo per [em]stare[/em] con ciò che sei",
+      "heroSub":"Benvenuta. Questo è uno spazio pensato per chi vuole capirsi meglio, attraversare momenti difficili e costruire qualcosa di più autentico per sé.",
+      "chiSonoTitolo":"Dott.ssa Federica Dolmetti",
+      "bio1":"Sono una psicologa e psicoterapeuta in formazione sistemico-relazionale. Lavoro con adulti che si trovano in momenti di cambiamento, difficoltà relazionale, o semplicemente con il desiderio di capirsi meglio.",
+      "bio2":"Il mio approccio integra la prospettiva sistemico-relazionale con strumenti dalla psicologia clinica, cercando sempre di costruire insieme al paziente uno spazio autentico e non giudicante.",
+      "fotoUrl":"","prenotazioneTesto":"Il primo passo è il più importante. Scrivimi per fissare un colloquio conoscitivo — senza impegno, senza fretta.",
+      "formLink":"","footerSub":"Dott.ssa Federica Dolmetti — Psicologa","igLink":"https://instagram.com/mala.mente.psicologa","waNumber":"39"
     },
-    competenze:[
-      {titolo:'Psicoterapia individuale',desc:'Percorsi personalizzati per adulti e giovani adulti'},
-      {titolo:'Consulenza psicologica',desc:'Spazio di ascolto e orientamento clinico'},
-      {titolo:'Neurodivergenza e inclusione',desc:'Esperienza con adulti autistici e neurodivergenti'},
-      {titolo:'Supporto alla genitorialità',desc:'Percorsi per genitori, con attenzione alla neurodivergenza'}
+    "competenze":[
+      {"titolo":"Psicoterapia individuale","desc":"Percorsi personalizzati per adulti e giovani adulti"},
+      {"titolo":"Consulenza psicologica","desc":"Spazio di ascolto e orientamento clinico"},
+      {"titolo":"Neurodivergenza e inclusione","desc":"Esperienza con adulti autistici e neurodivergenti"},
+      {"titolo":"Supporto alla genitorialità","desc":"Percorsi per genitori, con attenzione alla neurodivergenza"}
     ],
-    quotes:[
-      {text:'Non esiste un vento favorevole per il marinaio che non sa dove andare.',author:'Seneca'},
-      {text:'La vita non è quella vissuta, ma quella ricordata e come viene ricordata.',author:'Gabriel García Márquez'},
-      {text:'Conosci te stesso.',author:'Socrate'}
+    "quotes":[
+      {"text":"Non esiste un vento favorevole per il marinaio che non sa dove andare.","author":"Seneca"},
+      {"text":"La vita non è quella vissuta, ma quella ricordata e come viene ricordata.","author":"Gabriel García Márquez"},
+      {"text":"Conosci te stesso.","author":"Socrate"}
     ],
-    pillole:[
-      {title:"Cosa si intende per ansia?",tag:'Ansia · Benessere',text:"L'ansia è una risposta normale dell'organismo allo stress. Diventa un problema quando persiste e interferisce con la quotidianità.",date:'2025-04-01'},
-      {title:'Il valore della vulnerabilità',tag:'Relazioni · Crescita',text:'Mostrarsi vulnerabili non è debolezza: è il modo in cui costruiamo connessioni autentiche con gli altri e con noi stessi.',date:'2025-03-20'}
+    "pillole":[
+      {"title":"Cosa si intende per ansia?","tag":"Ansia · Benessere","text":"L'ansia è una risposta normale dell'organismo allo stress. Diventa un problema quando persiste e interferisce con la quotidianità.","date":"2025-04-01"},
+      {"title":"Il valore della vulnerabilità","tag":"Relazioni · Crescita","text":"Mostrarsi vulnerabili non è debolezza: è il modo in cui costruiamo connessioni autentiche con gli altri e con noi stessi.","date":"2025-03-20"}
     ],
-    servizi:[
-      {name:'Psicoterapia individuale',desc:'Percorsi personalizzati con approccio sistemico-relazionale.'},
-      {name:'Consulenza psicologica',desc:'Uno o più colloqui di orientamento clinico.'},
-      {name:'Supporto alla genitorialità',desc:"Uno spazio per i genitori che vogliono capire meglio i propri figli, sostenere la relazione e attraversare insieme le sfide della genitorialità — anche quando il figlio ha un funzionamento diverso."}
+    "servizi":[
+      {"name":"Psicoterapia individuale","desc":"Percorsi personalizzati con approccio sistemico-relazionale."},
+      {"name":"Consulenza psicologica","desc":"Uno o più colloqui di orientamento clinico."},
+      {"name":"Supporto alla genitorialità","desc":"Uno spazio per i genitori che vogliono capire meglio i propri figli, sostenere la relazione e attraversare insieme le sfide della genitorialità."}
     ]
-  };
+  /* DEFAULT_DATA_END */};
 }
 function S(d){ localStorage.setItem(KEY,JSON.stringify(d)); }
 
@@ -585,13 +589,6 @@ function renderAll(){
   document.getElementById('heroSub').textContent=t.heroSub;
   document.getElementById('chiSonoTitolo').textContent=t.chiSonoTitolo;
   document.getElementById('chiSonoBio').innerHTML=`<p>${t.bio1}</p><p style="margin-top:1rem">${t.bio2}</p>`;
-  if(t.fotoUrl){
-    document.getElementById('fotoPlaceholder').style.display='none';
-    const img=document.getElementById('fotoImg'); img.src=t.fotoUrl; img.style.display='block';
-  } else {
-    document.getElementById('fotoPlaceholder').style.display='flex';
-    document.getElementById('fotoImg').style.display='none';
-  }
   document.getElementById('competenzeList').innerHTML=d.competenze.map(c=>`
     <div class="competenza"><div class="competenza-icon">◆</div><div class="competenza-text"><strong>${c.titolo}</strong><span>${c.desc}</span></div></div>`).join('');
   document.getElementById('prenotazioneTesto').textContent=t.prenotazioneTesto;
@@ -677,7 +674,7 @@ function showSaved(id){ const el=document.getElementById(id); el.style.display='
 
 // SAVE TESTI
 window.saveTesti=function(){ const d=D(); ['heroTag','heroTitle','heroSub'].forEach(k=>d.testi[k]=document.getElementById('t_'+k).value); S(d); renderAll(); showSaved('s_testi'); };
-window.saveChiSono=function(){ const d=D(); ['chiSonoTitolo','bio1','bio2','fotoUrl'].forEach(k=>d.testi[k]=document.getElementById('t_'+k).value.trim()||document.getElementById('t_'+k).value); S(d); renderAll(); showSaved('s_chiSono'); };
+window.saveChiSono=function(){ const d=D(); ['chiSonoTitolo','bio1','bio2'].forEach(k=>d.testi[k]=document.getElementById('t_'+k).value.trim()||document.getElementById('t_'+k).value); S(d); renderAll(); showSaved('s_chiSono'); };
 window.savePrenotazione=function(){ const d=D(); d.testi.prenotazioneTesto=document.getElementById('t_prenotazioneTesto').value; d.testi.formLink=document.getElementById('t_formLink').value.trim(); S(d); renderAll(); showSaved('s_prenotazione'); };
 window.saveFooter=function(){ const d=D(); d.testi.footerSub=document.getElementById('t_footerSub').value; d.testi.igLink=document.getElementById('t_igLink').value.trim(); d.testi.waNumber=document.getElementById('t_waNumber').value.trim(); S(d); renderAll(); showSaved('s_footer'); };
 
@@ -783,6 +780,23 @@ window.handleImport=function(e){
   const reader=new FileReader();
   reader.onload=ev=>{ try{ S(JSON.parse(ev.target.result)); renderAll(); renderQuotes(); loadAdmin(); alert('Backup importato!'); }catch{ alert('File non valido.'); } };
   reader.readAsText(file);
+};
+
+// ════ GENERA HTML ════
+window.generateHTML=function(){
+  const data=D();
+  const newBlock='/* DEFAULT_DATA_START */\n'+
+    '    '+JSON.stringify(data,null,4)
+      .replace(/^{/,'').replace(/}$/,'').trim()
+      .split('\n').map((l,i)=>i===0?l:'    '+l).join('\n')+
+    '\n  /* DEFAULT_DATA_END */';
+  let html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+  html=html.replace(/\/\* DEFAULT_DATA_START \*\/[\s\S]*?\/\* DEFAULT_DATA_END \*\//,newBlock);
+  const blob=new Blob([html],{type:'text/html;charset=utf-8'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(blob);
+  a.download='index.html'; document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(a.href);
+  const el=document.getElementById('s_export'); el.style.display='block'; setTimeout(()=>el.style.display='none',3000);
 };
 
 // INIT
